@@ -1,0 +1,16 @@
+function freqScalMat = buildFreqScal(nmode, xy, PO, Np, k0)
+
+for portCnt = 1:Np
+    % get port dimension
+    MAXPO = PO(end, Np);
+    yMin = xy(2, PO(1, Np));
+    yMax = xy(2, PO(MAXPO, Np));
+    portLen = yMax - yMin;    
+    for modeCnt = 1:nmode       
+        kg = modeCnt * pi / portLen;
+        fact = -sqrt(kg^2 - k0^2);
+        preFact((portCnt - 1) * nmode + modeCnt) = 1*fact;
+    end
+end
+        
+freqScalMat = diag(preFact);

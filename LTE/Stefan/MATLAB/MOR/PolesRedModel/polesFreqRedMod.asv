@@ -1,0 +1,108 @@
+% This script calculates the poles in frequency direction 
+% of the models of different order
+close all;
+clear all;
+
+fontsize = 20;
+linewidth = 3;
+
+figHandle = figure;
+set(figHandle,'color','w');
+
+filename = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_5_Freq\s11_f_1e9_5e7_40e9_m_21_0_21.txt';
+[m, f, s_, de] = readS_ParamDet(filename);
+plot(f*1e-9, abs(s_), 'LineWidth', linewidth);
+set(gca,'FontSize',fontsize)
+grid;
+hold;
+
+filename = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_10_p2_fine\s11_f_1e9_5e7_40e9_m_21_0_21.txt';
+[m, f, s, de] = readS_ParamDet(filename);
+plot(f*1e-9, abs(s), 'r', 'LineWidth', linewidth);
+
+% filename = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_10_Freq\s11_f_1e9_5e7_40e9_m_21_0_21.txt';
+% [m, f, s, de] = readS_ParamDet(filename);
+% plot(f, abs(s), 'g');
+
+filename = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_20_Freq\s_f_1e+009_5e+007_m_21_0.1_21.txt';
+[m, f, s, de] = readS_ParamDet(filename);
+plot(f*1e-9, abs(s), 'k', 'LineWidth', linewidth);
+axis([10 25 0 1.1])
+ylabel('|S_{11}|', 'FontSize', fontsize);
+xlabel('Frequency (GHz)', 'FontSize', fontsize);
+%legend('MOR 5', 'MOR 10', 'MOR 10 compl', 'MOR 20');
+legend('MOR 5', 'MOR 10', 'MOR 20', 'Location', 'SouthWest');
+
+pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_5_Freq\';
+fNameModRedTxt = strcat(pathName, 'modelParam.txt');
+[f0, mu0, numLeftVecs] = readModParaTxt(fNameModRedTxt);
+
+c0 = 299792.458e3;
+k0 = 2.0*pi*f0/c0;
+
+fontsize = 12;
+linewidth = 1.5;
+
+figHandle = figure;
+set(figHandle,'color','w');
+hold;
+grid;
+
+polesMu5 = calcPolesFreq(pathName, k0);
+plot(real(polesMu5)*1e-9, imag(polesMu5), 's', 'LineWidth', linewidth);
+
+pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_10_Freq\';
+fNameModRedTxt = strcat(pathName, 'modelParam.txt');
+[f0, mu0, numLeftVecs] = readModParaTxt(fNameModRedTxt);
+
+polesMu10 = calcPolesFreq(pathName, k0);
+plot(real(polesMu10)*1e-9, imag(polesMu10), 'rv', 'LineWidth', linewidth);
+%axis([0 4e10 0 5e10]);
+
+% pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_10_p2_fine\';
+% fNameModRedTxt = strcat(pathName, 'modelParam.txt');
+% [f0, mu0, numLeftVecs] = readModParaTxt(fNameModRedTxt);
+
+% polesMu10compl = calcPolesFreq(pathName, k0);
+% plot(real(polesMu10compl)*1e-9, imag(polesMu10compl), 'gd');
+%axis([0 4e10 0 5e10]);
+
+pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_20_Freq\';
+fNameModRedTxt = strcat(pathName, 'modelParam.txt');
+[f0, mu0, numLeftVecs] = readModParaTxt(fNameModRedTxt);
+
+polesMu10compl = calcPolesFreq(pathName, k0);
+plot(real(polesMu10compl)*1e-9, imag(polesMu10compl), 'k<', 'LineWidth', linewidth);
+%axis([0 4e10 0 5e10]);
+axis([10 25 -0.1e8 2.5e10]);
+
+%legend('MOR 5', 'MOR 10', 'MOR 10 compl', 'MOR 20');
+legend('MOR 5', 'MOR 10', 'MOR 20');
+
+% pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_10\';
+% polesMu10 = calcPolesMu(pathName, mu0, k0);
+% plot(real(polesMu10), imag(polesMu10), 'cv');
+% % 
+% % % pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_12\';
+% % % polesMu12 = calcPolesMu(pathName, mu0, k0);
+% % % plot(real(polesMu12), imag(polesMu12), 'm^');
+% % 
+% pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_20\';
+% polesMu20 = calcPolesMu(pathName, mu0, k0);
+% plot(real(polesMu20), imag(polesMu20), 'm<');
+% 
+% pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_20_oneParam\';
+% polesMu20 = calcPolesMu(pathName, mu0, k0);
+% plot(real(polesMu20), imag(polesMu20), 'g>');
+% 
+% pathName = 'C:\work\examples\DualModeDielWG_Filter\results\dualmodedielwg_filter_1.2e+010_21_23\';
+% polesMu20 = calcPolesMu(pathName, mu0, k0);
+% plot(real(polesMu20), imag(polesMu20), 'b^');
+% 
+%axis([0 100 -10 10]);
+% legend('MOR 2', 'MOR 4', 'MOR 6', 'MOR 8', 'MOR 10', ...'MOR 12', 
+%   'MOR 20');
+%legend('MOR 8', 'MOR 10', 'MOR 20', 'MOR 20 Mu', 'MOR 23');
+
+
+%figure;

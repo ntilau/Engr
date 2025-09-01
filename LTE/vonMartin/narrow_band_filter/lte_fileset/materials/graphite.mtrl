@@ -1,0 +1,8 @@
+{ FILE graphite.mtrl
+  { MATERIAL_PROPERTY graphite
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 1 }
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 70000 }
+  }
+}

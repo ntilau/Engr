@@ -1,0 +1,8 @@
+{ FILE lead.mtrl
+  { MATERIAL_PROPERTY lead
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 1 }
+    MU_RELATIVE Scal_Real { AR 1 0.999983 }
+    SIGMA Scal_Real { AR 1 5000000 }
+  }
+}

@@ -1,0 +1,41 @@
+function tschCoeff2 = tschebyCoeff2dCell(val)
+% This function computes the coefficients for two dimensional 
+% Tschebysheff interpolation
+%
+% Input: 
+%    val = two dimensional cell array containing function values vector 
+%          at the Tschebysheff interpolation points
+%
+% Output: 
+%    tschCoeff2 = two dimensional cell array containing the coefficients 
+%                 of two dimensional Tschebysheff polynomials.
+
+
+[s1NumPnts s2NumPnts] = size(val);
+
+fac1 = 2 / s1NumPnts;
+fac2 = 2 / s2NumPnts;
+tschCoeff1 = cell(s1NumPnts, s2NumPnts);
+for k = 1:s2NumPnts
+  for j = 1:s1NumPnts
+    tschCoeff1{j, k} = zeros(length(val{k, j}), 1);
+    for s1Cnt = 1:s1NumPnts
+      tschCoeff1{j, k} = tschCoeff1{j, k} + ...
+        val{s1Cnt, k} * cos(pi * (j - 1) * (s1Cnt - 0.5) / s1NumPnts);
+    end
+    tschCoeff1{j, k} = tschCoeff1{j, k} * fac1;
+  end
+end
+
+tschCoeff2 = cell(s1NumPnts, s2NumPnts);
+for j = 1:s1NumPnts
+  for k = 1:s2NumPnts
+    tschCoeff2{j, k} = zeros(length(val{k, j}), 1);
+    for s2Cnt = 1:s2NumPnts
+      tschCoeff2{j, k} = tschCoeff2{j, k} + ...
+        tschCoeff1{j, s2Cnt} * ...
+        cos(pi * (k - 1) * (s2Cnt - 0.5) / s2NumPnts);
+    end
+    tschCoeff2{j, k} = tschCoeff2{j, k} * fac2;
+  end
+end

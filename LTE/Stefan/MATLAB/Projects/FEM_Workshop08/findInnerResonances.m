@@ -1,0 +1,146 @@
+% This script tries to find inner resonances of an impedance formulation
+
+close all;
+clear;
+
+set(0,'DefaultFigureWindowStyle','docked');
+addpath(genpath('C:\work\Matlab\'));
+
+fontsize = 12;
+linewidth = 1.0;
+c0 = 299792.458e3;
+
+
+%% Build ROM
+
+order = 40;
+% modelName = 'C:\work\examples\AnalyticMeshed\AnalyticMeshedRectWG\AnalyticMeshedWG_1.2e+008_10_oneMode\';
+% modelName = 'C:\work\examples\AnalyticMeshed\AnalyticMeshedRectWG\AnalyticMeshedWG_1.1e+008_20\';
+% modelName = 'C:\work\examples\AnalyticMeshed\AnalyticMeshedRectWG\AnalyticMeshedWG_1.1e+008_5\';
+% modelName = 'C:\work\examples\wg3\wg3_mor\wg3_1.1e+008_25\';
+% modelName = 'C:\work\examples\AnalyticMeshed\AnalyticMeshedRectWG\AnalyticMeshedWG_1.1e+008_lowerOrder\';
+% modelName = 'C:\work\examples\langer\langer\langer_rom\Bandpassfilter_6e+009_40_ortho\';
+modelName = 'C:\work\examples\AnalyticMeshed\AnalyticMeshedRectWG\AnalyticMeshedWG_1.1e+008_61\';
+% modelName = 'C:\work\examples\langer\langer\langer_rom\Bandpassfilter_6e+009_30_ortho\';
+% modelName = 'C:\work\examples\coax\coax2\coax2_2.5e+009_MU_RELATIVE_74_(2,0)_4_Test\';
+% modelName = 'C:\work\examples\AnalyticMeshed\AnalyticMeshedRectWG\AnalyticMeshedWG_1.2e+008_10\';
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% sys0 = MatrixMarketReader(strcat(modelName,'system matrix.mm'));
+% k2_mat = MatrixMarketReader(strcat(modelName,'k^2 matrix.mm'));
+% f0 = 110e6;
+% k0 = 2*pi*f0/c0;
+% sys0 = sys0 - k0^2 * k2_mat;
+% MatrixMarketWriter(sys0, strcat(modelName,'system matrix.mm'));
+% % sys0 = sys0 - (1-0.01j) * k0^2 * k2_mat;
+% % MatrixMarketWriter(sys0, strcat(modelName,'system matrix'));
+% % MatrixMarketWriter((1-0.01j)*k2_mat, strcat(modelName,'k^2 matrix'));
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+impedanceFlag     = true;
+linFreqParamFlag  = true;
+newFileEndingFlag = true;
+orthoFlag         = true;
+saveMatlabFlag    = false;
+transposeFlag     = true;
+transparentFlag   = false;
+
+% buildRedModelTransp(modelName, order, linFreqParamFlag);
+% buildRedModelInterpolation(modelName, order, linFreqParamFlag, ...
+%     transposeFlag, orthoFlag, transparentFlag);
+% fNameSpara = modelEvaluation(modelName, impedanceFlag, newFileEndingFlag, ...
+%     saveMatlabFlag, transparentFlag);
+fNameSpara = solveUnredModel(modelName, impedanceFlag, linFreqParamFlag, ...
+    newFileEndingFlag);
+% fNameSpara = [modelName 'S_f_70000000_140000000_700001.txt'];
+
+if saveMatlabFlag
+    results = load(fNameSpara);
+    freqs = linspace(results.freqParam.fMin, results.freqParam.fMax, ...
+        results.freqParam.numPnts);
+    sVal  = zeros(results.freqParam.numPnts,1);
+    for k = 1:results.freqParam.numPnts
+        sVal(k)  = results.sMat{k}(1,1);
+    end
+else
+    [parameterNames, numParameterPnts, parameterVals, sMatrices] = ...
+        loadSmatrix(fNameSpara);
+    sVal  = zeros(numParameterPnts(1),1);
+    freqs = zeros(numParameterPnts(1),1);
+    for k = 1:numParameterPnts(1)
+        freqs(k) = parameterVals(1,k);
+        sVal(k)  = sMatrices{k}(1,1);
+    end
+end
+
+figHandle = figure;
+set(figHandle, 'color', 'w');
+absS11dB = 20*log10(abs(sVal));
+plot(freqs, absS11dB, 'LineWidth', linewidth);
+% plot(absS11dB, 'LineWidth', linewidth);
+% grid;
+% set(gca,'XTickLabel',{'1','2','3','4','5','6','7'})
+% extendticklabel(gca,'x',16);
+% axis([min(freqs1) max(freqs1) min(absS11dB) max(absS11dB)]);
+% axis([min(freqs1) max(freqs1) -200 -80]);
+
+
+%% compute resonace frequency
+resonatorLength = 3;
+lambda = 2 * resonatorLength;
+lambdaCutoff = 4;
+fRes = c0 * sqrt(lambda^-2 + lambdaCutoff^-2);
+display(fRes);
+
+
+%%
+
+modelName = 'C:\work\examples\wgTransition\wgTransition_1.75e+011_101\';
+order = 20;
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% sys0 = MatrixMarketReader(strcat(modelName,'system matrix'));
+% k2_mat = MatrixMarketReader(strcat(modelName,'k^2 matrix'));
+% f0 = 175e9;
+% k0 = 2*pi*f0/c0;
+% sys0 = sys0 - k0^2 * k2_mat;
+% MatrixMarketWriter(sys0, strcat(modelName,'system matrix'));
+% % sys0 = sys0 - (1-0.01j) * k0^2 * k2_mat;
+% % MatrixMarketWriter(sys0, strcat(modelName,'system matrix'));
+% % MatrixMarketWriter((1-0.01j)*k2_mat, strcat(modelName,'k^2 matrix'));
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+impedanceFlag     = true;
+linFreqParamFlag  = true;
+newFileEndingFlag = false;
+orthoFlag         = false;
+saveMatlabFlag    = false;
+transposeFlag     = true;
+ 
+% buildRedModelInterpolation(modelName, order, linFreqParamFlag, transposeFlag, orthoFlag);
+fNameSpara = modelEvaluation(modelName, impedanceFlag, newFileEndingFlag, saveMatlabFlag);
+% fNameSpara = solveUnredModel(modelName, impedanceFlag, linFreqParamFlag, newFileEndingFlag);
+% fNameSpara = [modelName 'S_f_1.5e+011_2e+011_201.txt'];
+
+if saveMatlabFlag
+    results = load(fNameSpara);
+    freqs = linspace(results.freqParam.fMin, results.freqParam.fMax, results.freqParam.numPnts);
+    sVal  = zeros(results.freqParam.numPnts,1);
+    for k = 1:results.freqParam.numPnts
+        sVal(k)  = results.sMat{k}(1,1);
+    end
+else
+    [parameterNames, numParameterPnts, parameterVals, sMatrices] = loadSmatrix(fNameSpara);
+    sVal  = zeros(numParameterPnts(1),1);
+    freqs = zeros(numParameterPnts(1),1);
+    for k = 1:numParameterPnts(1)
+        freqs(k) = parameterVals(1,k);
+        sVal(k)  = sMatrices{k}(1,2);
+    end
+end
+
+figHandle = figure;
+set(figHandle, 'color', 'w');
+absS11dB = 20*log10(abs(sVal));
+plot(freqs, absS11dB, 'LineWidth', linewidth);
+
+

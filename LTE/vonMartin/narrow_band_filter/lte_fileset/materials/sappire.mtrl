@@ -1,0 +1,8 @@
+{ FILE sappire.mtrl
+{ MATERIAL_PROPERTY sappire
+	3
+	EPSILON_RELATIVE Scal_Real { AR 1 10.0 } 
+	MU_RELATIVE Scal_Real { AR 1 1.0 } 
+	SIGMA Scal_Real { AR 1 0.0 } 
+}
+}

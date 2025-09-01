@@ -1,0 +1,315 @@
+close all;
+clear all;
+
+tic;
+
+linewidth = 2.5;
+fontsize = 14;
+
+set(0,'DefaultFigureWindowStyle','docked');
+
+%% reconstruct parameter dependence
+
+% parameter intervals
+s1Start = -2;
+s1End   =  2;
+s2Start = -1;
+s2End   =  1;
+
+% interpolation points in reference quadrilateral
+intpPntsRef = zeros(32, 2);
+delta = 1 / 6;
+intpPntsRef(1, :)  = [0 0];
+intpPntsRef(2, :)  = [delta 0];
+intpPntsRef(3, :)  = [(2 * delta) 0];
+intpPntsRef(4, :)  = [(3 * delta) 0];
+intpPntsRef(5, :)  = [(4 * delta) 0];
+intpPntsRef(6, :)  = [(5 * delta) 0];
+intpPntsRef(7, :)  = [(6 * delta) 0];
+intpPntsRef(8, :)  = [0 delta];
+intpPntsRef(9, :)  = [delta delta];
+intpPntsRef(10, :) = [(3 * delta) delta];
+intpPntsRef(11, :) = [(5 * delta) delta];
+intpPntsRef(12, :) = [(6 * delta) delta];
+intpPntsRef(13, :) = [0 (2 * delta)];
+intpPntsRef(14, :) = [(6 * delta) (2 * delta)];
+intpPntsRef(15, :) = [0 (3 * delta)];
+intpPntsRef(16, :) = [delta (3 * delta)];
+intpPntsRef(17, :) = [(5 * delta) (3 * delta)];
+intpPntsRef(18, :) = [(6 * delta) (3 * delta)];
+intpPntsRef(19, :) = [0 (4 * delta)];
+intpPntsRef(20, :) = [(6 * delta) (4 * delta)];
+intpPntsRef(21, :) = [0 (5 * delta)];
+intpPntsRef(22, :) = [delta (5 * delta)];
+intpPntsRef(23, :) = [(3 * delta) (5 * delta)];
+intpPntsRef(24, :) = [(5 * delta) (5 * delta)];
+intpPntsRef(25, :) = [(6 * delta) (5 * delta)];
+intpPntsRef(26, :) = [0 (6 * delta)];
+intpPntsRef(27, :) = [delta (6 * delta)];
+intpPntsRef(28, :) = [(2 * delta) (6 * delta)];
+intpPntsRef(29, :) = [(3 * delta) (6 * delta)];
+intpPntsRef(30, :) = [(4 * delta) (6 * delta)];
+intpPntsRef(31, :) = [(5 * delta) (6 * delta)];
+intpPntsRef(32, :) = [(6 * delta) (6 * delta)];
+% figure;
+% plot(intpPntsRef(:, 1), intpPntsRef(:, 2), 'x');
+% grid;
+
+% compute interpolation points
+% take arbitrary interval into accout, not only [0,1]
+intpPnts = zeros(32, 2);
+intpPnts(:, 1) = s1Start * (1 - intpPntsRef(:, 1)) + ...
+  s1End *  intpPntsRef(:, 1);
+intpPnts(:, 2) = s2Start * (1 - intpPntsRef(:, 2)) + ...
+  s2End *  intpPntsRef(:, 2);
+% figure;
+% plot(intpPnts(:, 1), intpPnts(:, 2), 'x');
+% grid;
+
+% evalute the function at the interpolation points
+y1 = cos(pi * ((1:s1NumPnts) - 0.5) / s1NumPnts);
+sIntPnts{1} = y1 * bma1 + bpa1;
+y2 = cos(pi * ((1:s2NumPnts) - 0.5) / s2NumPnts);
+sIntPnts{2} = y2 * bma2 + bpa2;
+%f = func(y * bma + bpa);
+
+% modelNameOriginalBase = ...
+%   'C:\work\examples\lenseQuarterShort\fine_h0_p2\lenseQuarterShort_1e+010_5_dy_';
+modelNameOriginalBase = ...
+  'C:\work\examples\lenseQuarterShort\lenseQuarterShort_1e+010_5_dy_';
+% modelNameOriginalBase = ...
+%   'V:\examples\lenseQuarterShort\lenseQuarterShort_1e+010_5_dy_';
+% modelNameOriginalBase = ...
+% 'D:\Ortwin\tmp\fine_h1_p2\fine_h1_p2\lenseQuarterShort_1e+010_5_dy_';
+sysMatIntp = cell(s1NumPnts, s2NumPnts);
+k2MatIntp  = cell(s1NumPnts, s2NumPnts);
+
+for s1Cnt = 1:length(sIntPnts{1})
+  for s2Cnt = 1:length(sIntPnts{2})
+    % call MeshDistorter
+    systemString = ['cd C:\work\examples\lenseQuarterShort\ & '...
+      'MeshDistorter lenseQuarterShort 10000000000 5 ' ...
+      num2str(sIntPnts{1}(s1Cnt)) ' ' num2str(sIntPnts{2}(s2Cnt)) ...
+      ' -dx \w'];
+
+%     systemString = ['cd V:\examples\lenseQuarterShort\ & '...
+%       'MeshDistorter lenseQuarterShort 10000000000 5 ' ...
+%       num2str(sIntPnts{1}(s1Cnt)) ' ' num2str(sIntPnts{2}(s2Cnt)) ...
+%       ' -dx \w'];
+    system(systemString);
+    
+    % name of new created directory
+    dirName = strcat(modelNameOriginalBase, ...
+      num2str(sIntPnts{1}(s1Cnt)), '_dz_', ...
+      num2str(sIntPnts{2}(s2Cnt)), '\');
+    fNameSysMat = strcat(dirName, 'system matrix');
+    sysMatIntp{s1Cnt, s2Cnt} = MatrixMarketReader(fNameSysMat);
+    fNameK2Mat = strcat(dirName, 'k^2 matrix');
+    k2MatIntp{s1Cnt, s2Cnt} = MatrixMarketReader(fNameK2Mat);
+    systemString2 = ['rmdir ' dirName ' /s /q'];
+    % system(systemString2); 
+  end
+end
+
+% build Vandermonde matrices
+Vinv = cell(length(sIntPnts), 1);
+for dimCnt = 1:length(sIntPnts)
+  V = zeros(length(sIntPnts{dimCnt}));
+  for k = 1:length(sIntPnts{dimCnt})
+    for m = 1:length(sIntPnts{dimCnt})
+      V(k, m) = sIntPnts{dimCnt}(k)^(m - 1);
+    end
+  end
+  Vinv{dimCnt} = inv(V);
+end
+
+% give every matrix the same nonzero pattern
+nzStructSysMat = spones(sysMatIntp{1, 1});
+nzStructSysMatK2 = spones(k2MatIntp{1, 1});
+for s1Cnt = 1:length(sIntPnts{1})
+  for s2Cnt = 1:length(sIntPnts{2})
+    nzStructSysMat = nzStructSysMat + spones(sysMatIntp{s1Cnt, s2Cnt});
+    nzStructSysMatK2 = nzStructSysMatK2 + spones(k2MatIntp{s1Cnt, s2Cnt});
+  end
+end
+for s1Cnt = 1:length(sIntPnts{1})
+  for s2Cnt = 1:length(sIntPnts{2})
+    sysMatIntp{s1Cnt, s2Cnt} = sysMatIntp{s1Cnt, s2Cnt} + nzStructSysMat;
+%     sysMatIntp{s1Cnt, s2Cnt} = sysMatIntp{s1Cnt, s2Cnt} - nzStructSysMat;
+    k2MatIntp{s1Cnt, s2Cnt} = k2MatIntp{s1Cnt, s2Cnt} + nzStructSysMatK2;
+%     k2MatIntp{s1Cnt, s2Cnt} = k2MatIntp{s1Cnt, s2Cnt} - nzStructSysMatK2;
+  end
+end
+
+% dissect sparse matrices to work on value arrays
+% Assumption: All matrices have the same nonzero pattern.
+val = cell(length(sIntPnts{1}), length(sIntPnts{2}));
+valK2 = cell(length(sIntPnts{1}), length(sIntPnts{2}));
+[rowStruct, colStruct, valStructSysMat] = find(nzStructSysMat);
+[rowK2Struct, colK2Struct, valK2StructSysMatK2] = find(nzStructSysMatK2);
+for s1Cnt = 1:length(sIntPnts{1})
+  for s2Cnt = 1:length(sIntPnts{2})
+    [row, col, val{s1Cnt, s2Cnt}] = find(sysMatIntp{s1Cnt, s2Cnt});
+    val{s1Cnt, s2Cnt} = val{s1Cnt, s2Cnt} - valStructSysMat;
+    if ~(sum(rowStruct == row) == length(row))
+      error('Wrong nonzero pattern');
+    end
+    [rowK2, colK2, valK2{s1Cnt, s2Cnt}] = find(k2MatIntp{s1Cnt, s2Cnt});
+    if ~(sum(rowK2Struct == rowK2) == length(rowK2))
+      error('Wrong nonzero pattern');
+    end
+    valK2{s1Cnt, s2Cnt} = valK2{s1Cnt, s2Cnt} - valK2StructSysMatK2;
+  end
+end
+
+toc;
+
+[rSize cSize] = size(sysMatIntp{1, 1});
+clear sysMatIntp;
+clear k2MatIntp;
+
+% build one dimensional Lagrange polynomials
+lagrPoly = cell(length(sIntPnts), ...
+  max(length(sIntPnts{1}), length(sIntPnts{2})));
+for dimCnt = 1:length(sIntPnts)
+  for pntCnt = 1:length(sIntPnts{dimCnt})
+    c = zeros(length(sIntPnts{dimCnt}), 1);
+    c(pntCnt) = 1;
+    lagrPoly{dimCnt, pntCnt} = Vinv{dimCnt} * c;
+  end
+end
+
+finalPoly = [];
+maxOrder = length(sIntPnts{1}) + length(sIntPnts{2} - 2);
+numParams = 2;
+for k = 0:maxOrder
+  finalPoly = rec(numParams, k, finalPoly, 0, 1);
+end
+coeffPoly = zeros(size(finalPoly, 1), length(val{1, 1}));
+coeffPolyK2 = zeros(size(finalPoly, 1), length(valK2{1, 1}));
+
+poly = cell(2, 1);
+for x1Cnt = 1:length(sIntPnts{1})
+  for x2Cnt = 1:length(sIntPnts{2})
+    % lagrange polynom along parameter 1
+    poly{1} = lagrPoly{1, x1Cnt};
+    % lagrange polynom along parameter 2
+    poly{2} = lagrPoly{2, x2Cnt};
+    for pow1Cnt = 1:length(poly{1})
+      for pow2Cnt = 1:length(poly{2})
+        rowNow = [(pow1Cnt - 1) (pow2Cnt - 1)];
+        rowPos = findRowInMat(rowNow, finalPoly);
+        coeffPoly(rowPos, :) = coeffPoly(rowPos,:) + ...
+          val{x1Cnt, x2Cnt}.' * poly{1}(pow1Cnt) * ...
+          poly{2}(pow2Cnt);        
+        coeffPolyK2(rowPos, :) = coeffPolyK2(rowPos,:) + ...
+          valK2{x1Cnt, x2Cnt}.' * poly{1}(pow1Cnt) * ...
+          poly{2}(pow2Cnt);        
+      end
+    end
+  end
+end
+
+parMat = cell(size(finalPoly, 1), 1);
+parMatK2 = cell(size(finalPoly, 1), 1);
+% assemble polynomial parameter dependence matrices
+for matCnt = 1:length(parMat)
+  parMat{matCnt} = sparse(row, col, coeffPoly(matCnt, :), rSize, cSize);
+  parMatK2{matCnt} = sparse(rowK2, colK2, coeffPolyK2(matCnt, :), ...
+    rSize, cSize);
+end
+
+% % test purpose
+% for matCnt = 1:length(s)
+%   parMat{1} + s(matCnt) * parMat{2} + s(matCnt)^2 * parMat{3} - ...
+%     sysMatrix{matCnt}
+% end
+
+
+%% test model
+
+% load original matrices
+sOrig{1} = -0.000:0.0005:0.004;
+sOrig{2} = -0.002:0.00025:0.002;
+
+modelNameOriginalBase = ...
+  'C:\work\examples\lenseQuarterShort\fine_h0_p2\lenseQuarterShort_1e+010_5_dy_';
+% modelNameOriginalBase = ...
+%   'V:\examples\lenseQuarterShort\fine_h0_p2\lenseQuarterShort_1e+010_5_dy_';
+% modelNameOriginalBase = ...
+%   'Y:\examples\lenseQuarterShort\fine_h1_p2\lenseQuarterShort_1e+010_5_dy_';
+dimSmat = 2;
+
+% rhs and leftVec are always the same, therefore only load them once
+rhs = zeros(size(parMat{1}, 2), dimSmat);
+lVec = zeros(size(parMat{1}, 2), dimSmat);
+for dimCnt = 1:dimSmat
+  fNameRHS = strcat(modelNameOriginalBase, num2str(sOrig{1}(1)), ...
+    '_dz_', num2str(sOrig{2}(1)), '\rhs', num2str(dimCnt-1));
+  rhs(:,dimCnt) = vectorReader(fNameRHS);
+  fNameLvec = strcat(modelNameOriginalBase, num2str(sOrig{1}(1)), ...
+  '_dz_', num2str(sOrig{2}(1)), '\leftVec', num2str(dimCnt-1));
+  lVec(:,dimCnt) = vectorReader(fNameLvec);
+end
+rhs = j*rhs;
+
+% load matrices and solve
+z11 = zeros(length(sOrig{1}), length(sOrig{2}));
+s11 = zeros(length(sOrig{1}), length(sOrig{2}));
+for s1Cnt = 1:length(sOrig{1})
+  for s2Cnt = 1:length(sOrig{2})
+    fNameMatrix = strcat(modelNameOriginalBase, ...
+      num2str(sOrig{1}(s1Cnt)), '_dz_', ...
+      num2str(sOrig{2}(s2Cnt)), '\system matrix');
+    sMatOrig = MatrixMarketReader(fNameMatrix);
+    Z = lVec.' * (sMatOrig\rhs);
+    z11(s1Cnt, s2Cnt) = Z(1, 1);
+    S = inv(Z - eye(dimSmat)) * (Z + eye(dimSmat));
+    s11(s1Cnt, s2Cnt) = S(1,1);
+  end
+end
+
+
+% solve with explicite parameter dependence
+sTest = sOrig;
+% build matrices and solve
+z11Test = zeros(length(sOrig{1}), length(sOrig{2}));
+s11Test = zeros(length(sOrig{1}), length(sOrig{2}));
+for s1Cnt = 1:length(sTest{1})
+  for s2Cnt = 1:length(sTest{2})
+    sAct = [sTest{1}(s1Cnt) sTest{2}(s2Cnt)];
+    disp(sAct);
+    % REVISIT: fast hack to get nonzero pattern
+    sysMatNow = parMat{1};
+    sysMatNow = sysMatNow - parMat{1};
+    for rowCnt = 1:size(finalPoly, 1)
+      pow = 1;
+      for parCnt = 1:size(finalPoly, 2)
+        pow = pow * sAct(parCnt)^finalPoly(rowCnt, parCnt);
+      end
+      sysMatNow = sysMatNow + parMat{rowCnt} * pow ;
+    end
+    Z = lVec.' * (sysMatNow\rhs);
+    z11Test(s1Cnt, s2Cnt) = Z(1, 1);
+    S = inv(Z - eye(dimSmat)) * (Z + eye(dimSmat));
+    s11Test(s1Cnt, s2Cnt) = S(1,1);
+  end
+end
+
+figure;
+surf(sTest{2}, sTest{1}, abs(s11));
+figure,
+surf(sTest{2}, sTest{1}, abs(s11Test));
+figure;
+surf(sTest{2}, sTest{1}, abs(s11 - s11Test));
+
+% fNameParMat = strcat(geoModelName, 'parMat');
+% save(fNameParMat, 'parMat', 'finalPoly');
+% fNameParMat = strcat(geoModelName, 'parMatK2');
+% save(fNameParMat, 'parMatK2', 'finalPoly');
+% fNameAll = strcat(geoModelName, 'all_h1_p2_t_5');
+%fNameAll = strcat(geoModelName, 'all');
+% save(fNameAll);
+
+
+

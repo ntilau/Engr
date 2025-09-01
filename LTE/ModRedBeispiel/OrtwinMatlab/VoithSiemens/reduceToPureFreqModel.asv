@@ -1,0 +1,12 @@
+function pureFreqModel = reduceToPureFreqModel(model)
+
+maxOrder = sum(model.coeffSequence(end, :));
+numParams = length(model.coeffSequence(1, :));
+for orderCnt = 0 : maxOrder
+  row = zeros(1, numParams);
+  posPureFreqDependence = findRowInMat(row, model.coeffSequence);
+  if ~isempty(model.sysMat{posPureFreqDependence})
+    pureFreqModel.sysMat{order + 1} = 
+end
+pureFreqModel = model;
+

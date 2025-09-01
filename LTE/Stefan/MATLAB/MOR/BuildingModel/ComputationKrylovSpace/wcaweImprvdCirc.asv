@@ -1,0 +1,48 @@
+function [Q U] = wcaweImprvdCirc(Fact, mat, order, Q, U, orthoFlag,...
+  pardisoFlag, rhs)
+% This WCAWE implementation allows the efficient computation of
+% the orthogonal basis by integrating precomputed vectors from the ROM.
+
+if isempty(U) && isempty(Q) && order >= 0
+  v = forwBackSubst(Fact, rhs{1}, pardisoFlag);
+  U(1,1) = norm(v);
+  Q(:,1) = v / U(1,1);
+end
+
+for n = (size(U,2)+1):(order+1)
+  v = -mat{2} * Q(:,n-1);
+  for m = 2:min(length(mat)-1, n-1)
+    eNmM = zeros(n-m, 1);
+    eNmM(n-m) = 1;
+    v = v - mat{m+1} * (Q(:,1:(n-m))*(PUwInverse(U,2,m,n)\eNmM));
+  end
+  for m = 1:min(length(rhs)-1, n-1)
+    if ~isempty(
+    eNmM = zeros(n-m, 1);
+    eNmM(n-m) = 1;
+    correction = PUwInverse(U,1,m,n)\eNmM;
+    v = v + rhs{m+1} * correction(1);
+  end
+  % solve LSE
+  v = forwBackSubst(Fact, v, pardisoFlag);
+%   if pardisoFlag
+%     [v err] = pardisoSolveLTE(Fact.mtype, Fact.iparm, Fact.pt, ...
+%       Fact.A_val, Fact.A_ia, Fact.A_ja, Fact.ncol, v, 0);
+%     if err ~= 0
+%       error(['Pardiso error during solving: ' err]);
+%     end
+%   else
+%     if isfield(Fact, 'P');
+%       v = Fact.P * v;
+%     end
+%     v = Fact.U \ (Fact.L \ v);
+%     if isfield(Fact, 'Q');
+%       v = Fact.Q * v;
+%     end
+%   end
+  [v projCoeffs] = orthoAgainstSpace(v, Q, n-1, orthoFlag);
+  U(1:n,n) = projCoeffs;
+  Q(:,n) = v;
+end
+
+

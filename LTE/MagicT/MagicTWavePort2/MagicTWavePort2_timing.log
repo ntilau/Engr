@@ -1,0 +1,750 @@
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.13             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.5e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.07             0.07
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.65e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.8e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.95e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.13             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.1e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.25e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.4e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real              0.1             0.04
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.55e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.7e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.85e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 4e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.5e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real              0.1             0.04
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.65e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.8e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 2.95e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.07             0.07
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.09             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.1e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.07             0.07
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real              0.1             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.25e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.07
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.4e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.13             0.05
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.13                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.13                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.55e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.07             0.07
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real              0.1             0.03
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.16                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.7e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3.85e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14             0.06
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.14                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 4e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15             0.07
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.15                0
+
+
+
+//*******************************************************************************
+project name: ./MagicTWavePort2/MagicTWavePort2
+frequency: 3e+10
+start solving: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.06             0.06
+
+solving finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.08             0.02
+
+start writing solution file: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.12             0.04
+
+writing solution file finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.13             0.01
+
+program finished: 
+
+TIME ======== Total/s ======== Delta/s
+Real             0.13                0
+

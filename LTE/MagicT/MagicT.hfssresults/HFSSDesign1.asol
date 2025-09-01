@@ -1,0 +1,110 @@
+$begin '$base_index$'
+  $begin 'properties'
+    all_levels=000000000000
+    time(year=000000002009, month=000000000012, day=000000000002, hour=000000000011, min=000000000043, sec=000000000049)
+    version=000000000000
+  $end 'properties'
+  $begin '$base_index$'
+    $index$(pos=000000003698, lin=000000000089, lvl=000000000000)
+  $end '$base_index$'
+$end '$base_index$'
+$begin 'SolutionBlock1'
+	ProductName=''
+	CircuitName='HFSSDesign1'
+	VersionID=0
+	PostProcess=false
+	LossLess=true
+	NextUniqueID=86
+	MoveBackwards=false
+	$begin 'VariationIDs'
+		Map(V='$h=\'3.556mm\' $l=\'20mm\' $w=\'7.112mm\'', ID=85)
+	$end 'VariationIDs'
+	$begin 'LinkedDataList'
+	$end 'LinkedDataList'
+	$begin 'InitialMeshes'
+		M(VID=85, Ver=0, Dir='DV85_V0.imesh/')
+	$end 'InitialMeshes'
+$end 'SolutionBlock1'
+$begin 'BlockMapName'
+	FileHeader='SolutionBlock1'
+	'SolutionKey(SimSetup=14, Instance=\'SetupDefinition\', Solution=-1, VersionID=0)'='SolutionBlock5'
+	'SolutionKey(SimSetup=14, Instance=\'SolutionDefinition\', Solution=16, VersionID=0)'='SolutionBlock2'
+	'SolutionKey(SimSetup=14, Instance=\'SolutionDefinition\', Solution=17, VersionID=0)'='SolutionBlock3'
+	'SolutionKey(SimSetup=14, Instance=\'SolutionDefinition\', Solution=71, VersionID=0)'='SolutionBlock4'
+$end 'BlockMapName'
+$begin 'SolutionBlock5'
+	SimSetupID=14
+	SimSetupName='Setup1'
+	VersionID=0
+	IsImported=false
+	IsTable=false
+	SolveSetupID=0
+	$begin 'Profiles'
+		P(VID=85, Ver=0, File='DV85_S14_V0.profile')
+	$end 'Profiles'
+$end 'SolutionBlock5'
+$begin 'SolutionBlock2'
+	SolutionName='LastAdaptive'
+	SolutionID=16
+	V=0
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies(38000000000)
+		SolutionType=6
+		CenterFreq=0
+	$end 'Definition'
+	IsImported=false
+	IsTable=false
+	IsMatrixDataTable=false
+	SweepID=-1
+$end 'SolutionBlock2'
+$begin 'SolutionBlock3'
+	SolutionName='Sweep1'
+	SolutionID=17
+	V=0
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies(1000000000, 1090000000, 1180000000, 1270000000, 1360000000, 1450000000, 1540000000, 1630000000, 1720000000, 1810000000, 1900000000, 1990000000, 2080000000, 2170000000, 2260000000, 2350000000, 2440000000, 2530000000, 2620000000, 2710000000, 2800000000, 2890000000, 2980000000, 3070000000, 3160000000, 3250000000, 3340000000, 3430000000, 3520000000, 3610000000, 3700000000, 3790000000, 3880000000, 3970000000, 4060000000, 4150000000, 4240000000, 4330000000, 4420000000, 4510000000, 4600000000, 4690000000, 4780000000, 4870000000, 4960000000, 5050000000, 5140000000, 5230000000, 5320000000, 5410000000, 5500000000, 5590000000, 5680000000, 5770000000, 5860000000, 5950000000, 6040000000, 6130000000, 6220000000, 6310000000, 6400000000, 6490000000, 6580000000, 6670000000, 6760000000, 6850000000, 6940000000, 7030000000, 7120000000, 7210000000, 7300000000, 7390000000, 7480000000, 7570000000, 7660000000, 7750000000, 7840000000, 7930000000, 8020000000, 8110000000, 8200000000, 8290000000, 8380000000, 8470000000, 8560000000, 8650000000, 8740000000, 8830000000, 8920000000, 9010000000, 9100000000, 9190000000, 9280000000, 9370000000, 9460000000, 9550000000, 9640000000, 9730000000, 9820000000, 9910000000, 10000000000)
+		SolutionType=6
+		CenterFreq=0
+	$end 'Definition'
+	IsImported=false
+	IsTable=false
+	IsMatrixDataTable=false
+	SweepID=0
+$end 'SolutionBlock3'
+$begin 'SolutionBlock4'
+	SolutionName='Sweep2'
+	SolutionID=71
+	V=0
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=true
+		StartFreq=1000000000
+		StopFreq=10000000000
+		StepSize=45000000
+		SolutionType=5
+		CenterFreq=0
+	$end 'Definition'
+	IsImported=false
+	IsTable=false
+	IsMatrixDataTable=false
+	SweepID=1
+$end 'SolutionBlock4'
+$begin '$index$'
+	$begin '$index$'
+		BlockMapName(pos=783, lin=18, lvl=0)
+		SolutionBlock2(pos=1496, lin=36, lvl=0)
+		SolutionBlock3(pos=1822, lin=53, lvl=0)
+		SolutionBlock4(pos=3341, lin=70, lvl=0)
+		SolutionBlock5(pos=1267, lin=25, lvl=0)
+		SolutionBlock1(pos=370, lin=1, lvl=0)
+		$base_index$(pos=0, lin=1, lvl=0)
+		$index$(pos=3698, lin=89, lvl=0)
+	$end '$index$'
+$end '$index$'

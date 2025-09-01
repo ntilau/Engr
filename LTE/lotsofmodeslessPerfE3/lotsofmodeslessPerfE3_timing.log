@@ -1,0 +1,210 @@
+
+
+//*******************************************************************************
+project name: lotsofmodeslessPerfE3
+frequency: 1e+007
+start solving: 
+TIME___________Total/s__________Delta/s
+Real             6.809            6.809
+User           4.64668          4.64668
+Syst           2.11304          2.11304
+solving finished: 
+TIME___________Total/s__________Delta/s
+Real           547.743          540.934
+User           540.948          536.301
+Syst           3.84553          1.73249
+start writing DX: 
+TIME___________Total/s__________Delta/s
+Real           547.783             0.04
+User           540.978        0.0300432
+Syst           3.85554        0.0100144
+normalize eigenvectors finished: 
+TIME___________Total/s__________Delta/s
+Real           547.783                0
+User           540.978                0
+Syst           3.85554                0
+writing DX finished: 
+TIME___________Total/s__________Delta/s
+Real           1056.55          508.766
+User           837.885          296.907
+Syst           212.866          209.011
+program finished: 
+TIME___________Total/s__________Delta/s
+Real           1057.33            0.781
+User           838.626         0.741066
+Syst           212.886        0.0200288
+
+
+//*******************************************************************************
+project name: lotsofmodeslessperfe3
+frequency: 1e+007
+start solving: 
+TIME___________Total/s__________Delta/s
+Real             3.624            3.624
+User           2.96875          2.96875
+Syst            0.0625           0.0625
+solving finished: 
+TIME___________Total/s__________Delta/s
+Real           122.044           118.42
+User           120.406          117.438
+Syst          0.171875         0.109375
+start writing DX: 
+TIME___________Total/s__________Delta/s
+Real           122.091            0.047
+User           120.438          0.03125
+Syst          0.171875                0
+normalize eigenvectors finished: 
+TIME___________Total/s__________Delta/s
+Real           122.091                0
+User           120.438                0
+Syst          0.171875                0
+writing DX finished: 
+TIME___________Total/s__________Delta/s
+Real           450.866          328.775
+User           372.688           252.25
+Syst           11.8125          11.6406
+program finished: 
+TIME___________Total/s__________Delta/s
+Real           451.694            0.828
+User             373.5           0.8125
+Syst           11.8281         0.015625
+
+
+//*******************************************************************************
+project name: lotsofmodeslessperfe3
+frequency: 1e+007
+start solving: 
+TIME___________Total/s__________Delta/s
+Real              3.39             3.39
+User           2.78125          2.78125
+Syst           0.09375          0.09375
+solving finished: 
+TIME___________Total/s__________Delta/s
+Real           138.919          135.529
+User           127.188          124.406
+Syst          0.328125         0.234375
+start writing DX: 
+TIME___________Total/s__________Delta/s
+Real           138.966            0.047
+User           127.219          0.03125
+Syst          0.328125                0
+normalize eigenvectors finished: 
+TIME___________Total/s__________Delta/s
+Real           138.966                0
+User           127.219                0
+Syst          0.328125                0
+writing DX finished: 
+TIME___________Total/s__________Delta/s
+Real           725.954          586.988
+User           593.734          466.516
+Syst            18.375          18.0469
+program finished: 
+TIME___________Total/s__________Delta/s
+Real           727.517            1.563
+User           595.203          1.46875
+Syst           18.4688          0.09375
+
+
+//*******************************************************************************
+project name: lotsofmodeslessperfe3
+frequency: 1e+007
+start solving: 
+TIME___________Total/s__________Delta/s
+Real             3.312            3.312
+User            2.8125           2.8125
+Syst           0.09375          0.09375
+solving finished: 
+TIME___________Total/s__________Delta/s
+Real           104.123          100.811
+User           101.234          98.4219
+Syst          0.140625         0.046875
+start writing DX: 
+TIME___________Total/s__________Delta/s
+Real           104.169            0.046
+User           101.266          0.03125
+Syst          0.140625                0
+normalize eigenvectors finished: 
+TIME___________Total/s__________Delta/s
+Real           104.169                0
+User           101.266                0
+Syst          0.140625                0
+writing DX finished: 
+TIME___________Total/s__________Delta/s
+Real           167.465           63.296
+User           146.453          45.1875
+Syst              6.75          6.60938
+program finished: 
+TIME___________Total/s__________Delta/s
+Real            167.59            0.125
+User           146.578            0.125
+Syst              6.75                0
+
+
+//*******************************************************************************
+project name: lotsofmodeslessperfe3
+frequency: 1e+007
+start solving: 
+TIME___________Total/s__________Delta/s
+Real             3.296            3.296
+User           2.84375          2.84375
+Syst          0.140625         0.140625
+solving finished: 
+TIME___________Total/s__________Delta/s
+Real             8.687            5.391
+User            7.9375          5.09375
+Syst          0.203125           0.0625
+start writing DX: 
+TIME___________Total/s__________Delta/s
+Real             8.749            0.062
+User           7.96875          0.03125
+Syst          0.203125                0
+normalize eigenvectors finished: 
+TIME___________Total/s__________Delta/s
+Real             8.749                0
+User           7.96875                0
+Syst          0.203125                0
+writing DX finished: 
+TIME___________Total/s__________Delta/s
+Real            45.842           37.093
+User           33.1563          25.1875
+Syst           6.29688          6.09375
+program finished: 
+TIME___________Total/s__________Delta/s
+Real            45.905            0.063
+User           33.2188           0.0625
+Syst           6.29688                0
+
+
+//*******************************************************************************
+project name: lotsofmodeslessperfe3
+frequency: 1e+007
+start solving: 
+TIME___________Total/s__________Delta/s
+Real             3.359            3.359
+User             2.875            2.875
+Syst            0.0625           0.0625
+solving finished: 
+TIME___________Total/s__________Delta/s
+Real           217.386          214.027
+User           190.016          187.141
+Syst           0.15625          0.09375
+start writing DX: 
+TIME___________Total/s__________Delta/s
+Real           217.433            0.047
+User           190.047          0.03125
+Syst           0.15625                0
+normalize eigenvectors finished: 
+TIME___________Total/s__________Delta/s
+Real           217.433                0
+User           190.047                0
+Syst           0.15625                0
+writing DX finished: 
+TIME___________Total/s__________Delta/s
+Real           496.099          278.666
+User           397.094          207.047
+Syst           10.7813           10.625
+program finished: 
+TIME___________Total/s__________Delta/s
+Real           496.834            0.735
+User           397.766         0.671875
+Syst           10.8125          0.03125

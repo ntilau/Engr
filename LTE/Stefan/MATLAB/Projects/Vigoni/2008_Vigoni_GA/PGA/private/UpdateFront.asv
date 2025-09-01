@@ -1,0 +1,69 @@
+function p = UpdateFront( p )
+
+NF = length(p.population.front);
+N  = p.population.Nind;
+
+tokill = zeros(NF,1);
+toadd  = ones(N,1);
+
+if (NF==0)
+    for i=1:N
+        if (p.population.pareto(p.population.Ngen,i)==0)
+            %%% Sul fronte proprio non c'è mai stato!
+            toadd(i) = 0;
+        end
+    end
+end
+
+for j=1:NF
+    % per tutti quelli sul fronte storico, verifichiamo se sul fronte nuovo
+    % c'è chi fa meglio...
+    for i=1:N
+        if (p.population.pareto(p.population.Ngen,i)==1)
+            dom = 1;
+            tbd = 0;
+            for k = 1:p.cost.Ncost
+                if ( p.population.cost(p.population.Ngen,i,k) <= ...
+                        p.population.cost(p.population.front(j).Ngen,...
+                        p.population.front(j).Nind,k) )
+                        %%% no, non è dominato da questo j!
+                        dom = 0;
+                        tbd = tbd+1;
+                    end
+                end
+                if (dom == 1)
+                    %%% Tutti i costi di i sono maggiori di j !!!
+                    % i NON è sul vero fronte di Pareto
+                    toadd(i) = 0;
+                end
+                if (tbd==p.cost.Ncost)
+                    %%% Tutti i costi di i sono minori di j !!!
+                    % j è dominato da i e va tolto dal fronte di Pareto
+                    tokill(j) = 1;
+                end
+        else
+            %%% Sul fronte proprio non c'è mai stato!
+            toadd(i) = 0;
+        end
+    end
+end
+
+killed=0;
+for i=1:NF
+    if(tokill(i)==1)
+        p.population.front = [p.population.front(1:i-killed-1) p.population.front(i-killed+1:NF)];
+        NF = NF-1
+        killed = killed+1
+    end
+end
+
+for i=1:N
+    if (toadd(i)==1)
+        NF = NF+1;
+        p.population.front(NF).Ngen = p.population.Ngen;
+        p.population.front(NF).Nind = i;
+    end
+end
+
+tokill
+toadd

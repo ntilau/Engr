@@ -1,0 +1,33 @@
+clc;
+close all;
+clear;
+
+% Before running this script, set MATLABROOT and PATH to your local pathes.
+% A reference project for testing can be found at the preset PATH.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% add function pathes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[status, lteRoot] = system('ECHO %LTE_ROOT%');
+matlabRoot = strcat(lteRoot, 'MATLAB/EM_Solver_LargeScale/');
+
+addpath(genpath(strcat(matlabRoot, '/FieldComputation')));
+addpath(strcat(matlabRoot, '/String'));
+addpath(strcat(matlabRoot, '/idEM'));
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set simulation parameters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+path = ['C:\Users\ykonkel.LTE-W18\Simulation\Projects\LTE\', ...
+    'VariantenAnalyse\EM_Solver\LumpRlc\lte_fileset\VariantPCB_LumpElements_5e+009_1\'];
+Model = createVariantAnalysisModel(path);
+Model.rhsBlockSize = 50;
+
+% varS = variantAnalysis(Model);
+naiveS = naiveVariantSimulation(Model);
+
+for k = 1:length(varS)
+    fprintf('\nVariant %d: DeltaS = %1.3e, ',...
+        k, norm(norm(abs(varS{k}-naiveS{k}))));
+end
+fprintf('\n');

@@ -1,0 +1,9 @@
+{ FILE FR4.mtrl
+{ MATERIAL_PROPERTY FR4
+	3
+	EPSILON_RELATIVE Scal_Complex { AC 1 (4.4,-0.132) } 
+	MU_RELATIVE Scal_Real { AR 1 1 } 
+	SIGMA Scal_Real { AR 1 0.0 } 
+}
+}
+

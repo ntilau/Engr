@@ -1,0 +1,8 @@
+{ FILE silicon_dioxide.mtrl
+  { MATERIAL_PROPERTY silicon_dioxide
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 4 }
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

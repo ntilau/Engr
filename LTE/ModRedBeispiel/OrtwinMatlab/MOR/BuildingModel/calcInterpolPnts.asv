@@ -1,0 +1,10 @@
+function interpolPnts = calcInterpolPnts(numParams, order)
+
+for orderCnt = 1:order
+  multiIndex=[];
+  for k=0:order
+    multiIndex = rec(numParams, k, multiIndex, 0, 1);
+  end
+end
+
+interpolPnts = multiIndex;

@@ -1,0 +1,141 @@
+Face Face_EXPANDEDOPEN_12
+	Radiation
+
+Face Face_EXPANDEDOPEN_13
+	Radiation
+
+Face Face_EXPANDEDOPEN_16
+	Radiation
+
+Face Face_EXPANDEDOPEN_17
+	Radiation
+
+Face Face_EXPANDEDOPEN_20
+	Radiation
+
+Face Face_EXPANDEDOPEN_21
+	Radiation
+
+Face Face_EXPANDEDOPEN_24
+	Radiation
+
+Face Face_EXPANDEDOPEN_25
+	Radiation
+
+Face Face_EXPANDEDOPEN_28
+	Radiation
+
+Face Face_EXPANDEDOPEN_29
+	Radiation
+
+Face Face_EXPANDEDOPEN_34
+	Radiation
+
+Face Face_EXPANDEDOPEN_39
+	Radiation
+
+Face Face_EXPANDEDOPEN_4
+	Radiation
+
+Face Face_EXPANDEDOPEN_44
+	Radiation
+
+Face Face_EXPANDEDOPEN_49
+	Radiation
+
+Face Face_EXPANDEDOPEN_5
+	Radiation
+
+Face Face_EXPANDEDOPEN_6
+	Radiation
+
+Face Face_EXPANDEDOPEN_7
+	Radiation
+
+Face Face_EXPANDEDOPEN_8
+	Radiation
+
+Face Face_EXPANDEDOPEN_9
+	Radiation
+
+Face Face_PEC_11
+	PerfectE
+
+Face Face_PEC_15
+	PerfectE
+
+Face Face_PEC_37
+	PerfectE
+
+Face Face_PEC_42
+	PerfectE
+
+Face Face_PEC_45
+	PerfectE
+
+Face Face_PEC_50
+	PerfectE
+
+Face Face_PEC_56
+	PerfectE
+
+Face Face_PEC_60
+	PerfectE
+
+Face Face_PEC_63
+	PerfectE
+
+Face Face_PEC_64
+	PerfectE
+
+Face Face_PEC_75
+	PerfectE
+
+Face Face_PEC_76
+	PerfectE
+
+Face Face_PEC_77
+	PerfectE
+
+Face Face_PEC_78
+	PerfectE
+
+Face Face_PEC_79
+	PerfectE
+
+Face Face_PMC_19
+	PerfectH
+
+Face Face_PMC_23
+	PerfectH
+
+Face Face_PMC_33
+	PerfectH
+
+Face Face_PMC_43
+	PerfectH
+
+Face Face_PMC_48
+	PerfectH
+
+Face Face_PMC_51
+	PerfectH
+
+Face Face_PMC_58
+	PerfectH
+
+Face Face_PMC_61
+	PerfectH
+
+Face Face_PMC_65
+	PerfectH
+
+Face Face_PMC_66
+	PerfectH
+
+Face Port_1
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+		RenormImp 0.0e+000	ExcitationPhase (1.0000000000000000e+000,0.0000000000000000e+000)

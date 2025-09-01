@@ -1,0 +1,39 @@
+function [fPur, sMatrices] = readSparamWaveSolver( filename ) 
+% This function reads the S-matrices out of the sparam.txt file
+% of the WaveSolver and stores them in a three dimensional array.
+
+fid = fopen(filename, 'r');   
+fileString = fscanf(fid, '%c'); % string containing the whole file
+spacePos = find(fileString == ' ');
+solPos = strfind(fileString, 'solution');
+% find the number of strings in one line of the file 
+numStrInLine = length(find(fileString(solPos(1):solPos(2)) == ' '));
+freqs = zeros(length(spacePos)/numStrInLine,1);
+% read first frequency
+freqs(1) = str2num(fileString(1:spacePos(1)));
+for k=2:length(spacePos)
+  if mod(k,numStrInLine) == 1  % Frequency
+    %freqs(ceil(k/7)) = str2num(fileString(spacePos(k-1):spacePos(k)));
+    freqs(ceil(k/numStrInLine)) = str2num(fileString(spacePos(k-1):spacePos(k)));
+  end
+end
+% determine dimension of S-matrix
+dimSmatrix = length(find(freqs==freqs(1)));
+% read S-Matrix and write it in multidimensional array
+numFreqs = length(freqs)/dimSmatrix;  % number of different frequencies
+fPur = freqs(1:dimSmatrix:end);
+% use three dimensional array to store the S-matrices
+sMatrices = zeros(dimSmatrix,dimSmatrix,numFreqs);
+% Fill the S-matrices
+for fCnt = 1:numFreqs
+  for rCnt = 1:dimSmatrix
+    for cCnt = 1:dimSmatrix
+      strNum = (dimSmatrix*(fCnt-1)+(rCnt-1))*numStrInLine+5+(cCnt-1)*2;
+      cmplxStr = fileString((spacePos(strNum-1)+1):(spacePos(strNum)-1));
+      commaPos = find(cmplxStr == ',');
+      sMatrices(rCnt,cCnt,fCnt) = str2num(cmplxStr(2:(commaPos-1))) + ...
+        j*str2num(cmplxStr((commaPos+1):(length(cmplxStr)-1)));
+    end
+  end
+end
+fclose(fid);

@@ -1,0 +1,66 @@
+close all;
+clear;
+
+addpath(genpath('C:\work\Matlab'));
+set(0,'DefaultFigureWindowStyle', 'docked');
+fontsize = 12;
+linewidth = 1.0;
+
+
+%% Build ROM
+
+order = 20;
+% modelName = 'C:\work\examples\patch_antenna\patch_antenna_modRed\results\patch_antenna_6e+009_EPSILON_RELATIVE_Box1_(4,0)_EPSILON_RELATIVE_Box2_(2,0)_6_stable8_fEval\';
+modelName = 'C:\work\examples\patch_antenna\patch_antenna_modRed\results\patch_antenna_6e+009_EPSILON_RELATIVE_Box1_(4,0)_EPSILON_RELATIVE_Box2_(2,0)_6_o10\';
+% modelName = 'C:\work\examples\patch_antenna\patch_antenna_modRed\results\patch_antenna_6e+009_EPSILON_RELATIVE_Box1_(4,0)_EPSILON_RELATIVE_Box2_(2,0)_6_o12\';
+% modelName = 'C:\work\examples\patch_antenna\patch_antenna_modRed\results\patch_antenna_6e+009_EPSILON_RELATIVE_Box1_(4,0)_EPSILON_RELATIVE_Box2_(2,0)_6_o17\';
+% modelName = 'C:\work\examples\coax\coax2\coax2_1e+009_10\';
+impedanceFlag = true;
+% linFreqParamFlag = true;
+linFreqParamFlag = false;
+% newFileEndingFlag = true;
+newFileEndingFlag = false;
+ 
+% buildRedModelInterpTransp(modelName, order, linFreqParamFlag);
+% fNameSpara = modelEvaluation(modelName, impedanceFlag, newFileEndingFlag);
+fNameSpara = modelEvaluationFast(modelName, impedanceFlag, order, newFileEndingFlag);
+% fNameSpara = [modelName 'S_f_1000000000_4500000000_101_MU_RELATIVE_74_1_7_101.txt'];
+% fNameSpara = [modelName 'S_f_3000000000_8000000000_501_EPSILON_RELATIVE_Box1_5_5_1_EPSILON_RELATIVE_Box2_7_7_1.txt'];
+
+[parameterNames, numParameterPnts, parameterVals, sMatrices] = loadSmatrix(fNameSpara);
+
+% one parameter plot
+sVal = zeros(numParameterPnts(1), 1);
+freqs = zeros(numParameterPnts(1), 1);
+for k = 1 : numParameterPnts(1)
+  freqs(k) = parameterVals(1, k);
+  sVal(k) = sMatrices{k}(1, 1);
+end
+sVal1 = sVal;
+freqs1 = freqs;
+figHandle = figure;
+set(figHandle, 'color', 'w');
+plot(freqs1 * 1e-9, abs(sVal1), 'LineWidth', linewidth);
+grid;
+
+
+%% Numerical costs
+
+modOrder = 20;
+polyOrder = 3;
+wcaweCost = modOrder * (1 + polyOrder + 1);
+display(wcaweCost);
+
+
+%% Test forward-back substiution
+
+dim = 1000;
+A = randn(dim);
+b = randn(dim, 1);
+
+profile on;
+a = runtimeTest(A, b);
+profile viewer;
+
+
+

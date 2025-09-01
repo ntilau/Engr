@@ -1,0 +1,8 @@
+{ FILE Rogers_RT_duroid_6010_6010LM__tm.mtrl
+  { MATERIAL_PROPERTY Rogers_RT_duroid_6010_6010LM__tm
+    3
+    EPSILON_RELATIVE Scal_Complex { AC 1 ( 10.2,-0.02346) } 
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

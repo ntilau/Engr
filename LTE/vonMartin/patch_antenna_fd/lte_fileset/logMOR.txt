@@ -1,0 +1,168 @@
+A subdirectory or file 3dPort_1 already exists.
+
+****************************************************
+Copyright Lehrstuhl fuer Theoretische Elektrotechnik 
+Universitaet des Saarlandes 2006 
+****************************************************
+
+Frequency:   3e+009
+Wave number: 62.8754
+Reading data... Initializing material properties... DONE.
+DONE.
+Initializing material properties... DONE.
+
+# pos      = 81
+# nodes    = 81
+# edges    = 200
+# faces    = 120
+
+Assembling system matrices... DONE.
+Creating orthogonalisation matrices... DONE.
+Face_PEC_56, Face_PEC_75, 
+Arnoldi: 
+..........Arnoldi returned error code 0
+Start writing solution ... 
+Write Solution ...Writing 2D Mesh in file... 
+
+Writing solution finished. 
+Loading model ... 
+Frequency:   3e+009
+Wave number: 62.8754
+
+Time for reading model:
+TIME___________Total/s__________Delta/s
+Real             0.001            0.001
+User                 0                0
+Syst                 0                0
+
+Solving... 
+Time for solving model:
+TIME___________Total/s__________Delta/s
+Real             0.012            0.011
+User         0.0156001        0.0156001
+Syst                 0                0
+
+Saving results ...
+Time for saving results:
+TIME___________Total/s__________Delta/s
+Real             0.025            0.013
+User         0.0156001                0
+Syst                 0                0
+Frequency:   3e+009
+Wave number: 62.8754
+Reading mesh file...
+reading misc data files...
+reading formula...
+Initializing material properties...
+reading bc...
+
+Refine with version V0
+Refine with version V0
+SOLID Solid_Substrate_1 h = 0 p = 2
+SOLID Solid_Substrate_1 h = 0 p = 2
+SOLID Solid_Substrate_2 h = 0 p = 2
+SOLID Solid_Substrate_2 h = 0 p = 2
+SOLID Solid_air_0_10 h = 0 p = 2
+SOLID Solid_air_0_10 h = 0 p = 2
+SOLID Solid_air_0_11 h = 0 p = 2
+SOLID Solid_air_0_11 h = 0 p = 2
+SOLID Solid_air_0_12 h = 0 p = 2
+SOLID Solid_air_0_12 h = 0 p = 2
+SOLID Solid_air_0_13 h = 0 p = 2
+SOLID Solid_air_0_13 h = 0 p = 2
+SOLID Solid_air_0_14 h = 0 p = 2
+SOLID Solid_air_0_14 h = 0 p = 2
+SOLID Solid_air_0_3 h = 0 p = 2
+SOLID Solid_air_0_3 h = 0 p = 2
+SOLID Solid_air_0_4 h = 0 p = 2
+SOLID Solid_air_0_4 h = 0 p = 2
+SOLID Solid_air_0_5 h = 0 p = 2
+SOLID Solid_air_0_5 h = 0 p = 2
+SOLID Solid_air_0_6 h = 0 p = 2
+SOLID Solid_air_0_6 h = 0 p = 2
+SOLID Solid_air_0_7 h = 0 p = 2
+SOLID Solid_air_0_7 h = 0 p = 2
+SOLID Solid_air_0_8 h = 0 p = 2
+SOLID Solid_air_0_8 h = 0 p = 2
+SOLID Solid_air_0_9 h = 0 p = 2
+SOLID Solid_air_0_9 h = 0 p = 2
+init initial geometry... 
+refine Solids... 
+
+resolve hanging nodes... 
+Update Dof... 
+update 2TIME___________Total/s__________Delta/s
+Real             2.068            2.068
+User           2.02801          2.02801
+Syst         0.0780005        0.0780005
+
+# pos      = 17262
+# nodes    = 17262
+# edges    = 107643
+# faces    = 177195
+# raw DoF  = 569677
+
+Frequency:   3e+009
+Wave number: 62.8754
+Writing 2D Mesh in file... 
+
+EM_EigenModeSolver2D.exe .\3dPort_1\3dPort_1 3e+009 1 +o -dx +f +pg +sol +SingleLevelCoupling \w
+DONE
+create nummeration... DONE
+dead 640 alive 569037
+create resolution... DONE
+create actual Resolution... DONE
+Assembling system matrix... DONE.
+
+3d_3e+009_100
+Compress Matrix... DONE
+
+Time for building raw model:
+TIME___________Total/s__________Delta/s
+Real            17.538            15.47
+User           16.9417          14.9137
+Syst          0.218401         0.140401
+Build reduced model... 
+Frequency:   3e+009
+Wave number: 62.8754
+
+
+Start non blocked wcawe model order reduction... 
+
+Preparing for factorization:
+TIME___________Total/s__________Delta/s
+Real            19.631            2.093
+User           18.7201          1.77841
+Syst          0.530403         0.312002
+
+Factorization:
+TIME___________Total/s__________Delta/s
+Real           144.707          125.076
+User           140.947          122.227
+Syst           2.40242          1.87201
+
+Projecting model on projectionMatrix space... 
+
+Start adaptive process ... max Order: 100 ... Threshold value: 1e-007
+Enlarge reduced order model... 
+Error Indicator at order 2: 0.0434891
+Enlarge reduced order model... 
+Error Indicator at order 3: 1.21329e-005
+Enlarge reduced order model... 
+Error Indicator at order 4: 1.31331e-005
+Enlarge reduced order model... 
+Error Indicator at order 5: 3.36276e-008
+Adaptive subspace construction:
+TIME___________Total/s__________Delta/s
+Real           173.085           28.378
+User           168.777          27.8306
+Syst           2.71442         0.312002
+
+Saving reduced order model... DONE. 
+Evaluating S parameters... 
+
+Time for solving reduced model:
+TIME___________Total/s__________Delta/s
+Real           173.483            0.398
+User           168.777                0
+Syst           2.90162         0.187201

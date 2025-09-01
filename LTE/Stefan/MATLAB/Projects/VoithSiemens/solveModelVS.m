@@ -1,0 +1,124 @@
+function fNameResults = solveModelVS(modelName)
+
+
+%% load model
+tic
+disp(' ');
+disp('Loading model...');
+
+data = load(strcat(modelName, 'model'), 'model');
+model = data.model;
+clear data;
+
+params = readParams(strcat(modelName, 'params.txt'));
+params = computeParamPnts(params);
+numParams = length(params);
+
+pos = 1;
+currentParamVals = zeros(length(params), 1);
+if isempty(params)
+  paramSpace = [];
+else
+  paramSpace = buildParamSpace(params, pos, [], currentParamVals);
+end
+
+fName = strcat(modelName, 'sysMatParamDependence.txt');
+paramDependenceSysMat = readParamDependence(fName);
+fName = strcat(modelName, 'rhsParamDependence.txt');
+paramDependenceRhs = readParamDependence(fName);
+fName = strcat(modelName, 'outputFunctionalParamDependence.txt');
+paramDependenceOutputFunctional = readParamDependence(fName);
+
+% delete empty entries
+model.sysMat = deleteEmptyEntries(model.sysMat);
+model.rhs = deleteEmptyEntries(model.rhs);
+model.outputFunctional = deleteEmptyEntries(model.outputFunctional);
+
+toc
+
+
+%% solve model
+disp(' ');
+disp('Solving model ...');
+tic
+
+results = cell(size(paramSpace, 2), 1);
+for pntCnt = 1 : size(paramSpace, 2);
+  % build system matrix in current point in parameter space
+  if issparse(model.sysMat{1})
+    currentMat = sparse(size(model.sysMat{1}, 1), size(model.sysMat{1}, 2));
+  else
+    currentMat = zeros(size(model.sysMat{1}, 1), size(model.sysMat{1}, 2));
+  end
+  for sysMatCnt = 1:length(model.sysMat)
+    scale = 1;
+    for paramCnt = 1 : length(paramDependenceSysMat(sysMatCnt, :))
+      scale = scale * paramSpace(paramCnt, pntCnt) ^ paramDependenceSysMat(sysMatCnt, paramCnt);
+    end
+    currentMat = currentMat + scale * model.sysMat{sysMatCnt};
+  end
+  % build rhs in current point in parameter space
+  if issparse(model.rhs{1})
+    currentRhs = sparse(size(model.rhs{1}, 1), size(model.rhs{1}, 2));
+  else
+    currentRhs = zeros(size(model.rhs{1}, 1), size(model.rhs{1}, 2));
+  end
+  for rhsCnt = 1 : length(model.rhs)
+    scale = 1;
+    for paramCnt = 1 : length(paramDependenceRhs(rhsCnt, :))
+      scale = scale * paramSpace(paramCnt, pntCnt) ^ paramDependenceRhs(rhsCnt, paramCnt);
+    end
+    currentRhs = currentRhs + scale * model.rhs{rhsCnt};
+  end
+  % build outputFunctional in current point in parameter space
+  if issparse(model.outputFunctional{1})
+    currentOutputFunctional = sparse(size(model.outputFunctional{1}, 1), size(model.outputFunctional{1}, 2));
+  else
+    currentOutputFunctional = zeros(size(model.outputFunctional{1}, 1), size(model.outputFunctional{1}, 2));
+  end
+  for outCnt = 1 : length(model.outputFunctional)
+    scale = 1;
+    for paramCnt = 1 : length(paramDependenceOutputFunctional(outCnt, :))
+      scale = scale * paramSpace(paramCnt, pntCnt) ^ paramDependenceOutputFunctional(outCnt, paramCnt);
+    end
+    currentOutputFunctional = currentOutputFunctional + scale * model.outputFunctional{outCnt};
+  end
+  % solve
+  sol = currentMat \ currentRhs;
+  results{pntCnt} = currentOutputFunctional * sol;
+end
+
+toc
+
+
+%% write results
+fNameResults = modelName;
+for paramCnt = 1 : numParams
+  fNameResults = strcat(fNameResults, params{paramCnt}.name, '_', num2str(params{paramCnt}.min, '%14.14g'), '_', ...
+    num2str(params{paramCnt}.max, '%14.14g'), '_', num2str(params{paramCnt}.numPnts, '%14.14g'), '_');
+end
+fNameResults = fNameResults(1 : (end - 1));
+fNameResults = [fNameResults '.mat'];
+save(fNameResults, 'params', 'paramSpace', 'results'); 
+
+
+
+function cellArrayNew = deleteEmptyEntries(cellArray)
+
+% delete empty vectors from cellArray
+nnNonEmpty = 0;
+for posCnt = 1 : length(cellArray)
+  if ~isempty(cellArray{posCnt})
+    nnNonEmpty = nnNonEmpty + 1;
+  end
+end
+cellArrayNew = cell(1, nnNonEmpty);
+foundNotEmpty = 1;
+for posCnt = 1 : length(cellArray)
+  if ~isempty(cellArray{posCnt})
+    cellArrayNew{foundNotEmpty} = cellArray{posCnt};
+    foundNotEmpty = foundNotEmpty + 1;
+  end
+end
+
+

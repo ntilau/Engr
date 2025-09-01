@@ -1,0 +1,11 @@
+EM_WaveSolver MagicT 25000000000.000000 -out p
+EM_WaveSolver MagicT 26500000000.000000 -out p
+EM_WaveSolver MagicT 28000000000.000000 -out p
+EM_WaveSolver MagicT 29500000000.000000 -out p
+EM_WaveSolver MagicT 31000000000.000000 -out p
+EM_WaveSolver MagicT 32500000000.000000 -out p
+EM_WaveSolver MagicT 34000000000.000000 -out p
+EM_WaveSolver MagicT 35500000000.000000 -out p
+EM_WaveSolver MagicT 37000000000.000000 -out p
+EM_WaveSolver MagicT 38500000000.000000 -out p
+EM_WaveSolver MagicT 40000000000.000000 -out p

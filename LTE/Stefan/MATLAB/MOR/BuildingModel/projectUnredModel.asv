@@ -1,0 +1,48 @@
+function rom = projectUnredModel(unredModel, Q, transposeFlag, realProjMatFlag)
+
+if realProjMatFlag
+    if ~isreal(Q)
+        Q = [real(Q) imag(Q)];
+    end
+end
+
+% compute projections onto space Q
+rom.sysMat = cell(length(unredModel.sysMat),1);
+for k = 1:length(unredModel.sysMat)
+    if ~isempty(unredModel.sysMat{k})
+        if transposeFlag
+            rom.sysMat{k} = Q.'*unredModel.sysMat{k}*Q;
+        else
+            rom.sysMat{k} = Q'*unredModel.sysMat{k}*Q;
+        end
+    end
+end
+
+rom.ident = cell(length(unredModel.ident),1);
+for k = 1:length(unredModel.ident)
+    if transposeFlag
+        rom.ident{k} = Q.'*unredModel.ident{k}*Q;
+    else
+        rom.ident{k} = Q'*unredModel.ident{k}*Q;
+    end
+end
+
+rom.lVec = cell(unredModel.numLeftVecs,1);
+for k = 1:unredModel.numLeftVecs
+    rom.lVec{k} = unredModel.lVec{k}.'*Q;
+    % computation of Krylov space is done in real arithmetic
+    if transposeFlag
+        rom.rhs{k} = -2*1i*(Q.'*unredModel.rhs{k});
+    else
+        rom.rhs{k} = -2*1i*(Q'*unredModel.rhs{k});
+    end
+end
+
+rom.permutMat       = unredModel.permutMat;
+rom.paramNames      = unredModel.paramNames;
+rom.paramValInExp   = unredModel.paramValInExp;
+rom.numLeftVecs     = unredModel.numLeftVecs;
+rom.useKrylovSpaces = unredModel.useKrylovSpaces;
+rom.numParams       = unredModel.numParams;
+rom.k0              = unredModel.k0;
+

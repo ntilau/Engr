@@ -1,0 +1,3 @@
+fCuttOff 	14.989e9
+fExpansion	22.5e9
+freqRange 	15e9 		30e9

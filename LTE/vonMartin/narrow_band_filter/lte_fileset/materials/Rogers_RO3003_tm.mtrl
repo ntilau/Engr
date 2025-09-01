@@ -1,0 +1,8 @@
+{ FILE Rogers_RO3003__tm.mtrl
+  { MATERIAL_PROPERTY Rogers_RO3003__tm
+    3
+    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3,-0.0039) } 
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

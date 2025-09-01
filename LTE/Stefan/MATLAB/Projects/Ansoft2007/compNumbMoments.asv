@@ -1,0 +1,10 @@
+
+N = 2;  % number of parameters
+m = 2;  % order of moments
+numVecs = 0;  % number of moments
+for k = 0:m
+  numMom = numMom + factorial(k + N - 1) / factorial(k) / factorial(N - 1);
+end
+display(numMom);
+
+numTotalWCAWE_Vec = (m + 1) * 

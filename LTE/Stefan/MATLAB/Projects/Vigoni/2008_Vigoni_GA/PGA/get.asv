@@ -1,0 +1,14 @@
+function p = set(p,propName)
+% SETS various parameters
+
+switch propName
+   case 'Phenotype'
+      for i = 1:length(val)
+         ans{i} = [p.phenotype{i}.min,p.phenotype{i}.max,p.phenotype{i}.N];
+      end
+   otherwise
+      error('PGA properties: Phenotype')
+end
+
+   
+

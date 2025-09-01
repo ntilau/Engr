@@ -1,0 +1,8 @@
+{ FILE Neltec_NH9320__tm.mtrl
+  { MATERIAL_PROPERTY Neltec_NH9320__tm
+    3
+    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3.2,-0.00768) } 
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

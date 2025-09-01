@@ -1,0 +1,50 @@
+function p = PGA(varargin)
+%PGA class constructor
+%
+%   p = PGA([Nind,[{Phenotype},[{Cost}]]]) 
+%
+
+%%% Intanto un default
+%%% GA settings
+p.settings.XOverProb = 0.6;
+p.settings.M
+%%% population
+p.population.Nind = 10;
+p.population.Ngen = 0;
+p.population.specimens = {};
+p.population.cost = [];
+p.population.rank = [];
+p.population.pareto = [];
+%%% phenotype
+p.phenotype.min{1} = -1;
+p.phenotype.max{1} = 1;
+p.phenotype.N{1}   = 8;
+p.phenotype.Npar   = 1;
+p.phenotype.Nbits  = 8;
+%%% cost
+p.cost.pointer{1} = @(x) x.^2;
+p.cost.Ncost = 1;
+
+if nargin == 0
+    % No input at all
+    %%% bless
+    p = class (p,'PGA');
+elseif isa(varargin{1},'PGA')
+    p = varargin{1};
+else
+    %%% bless
+    p = class (p,'PGA');
+    if(isfloat(varargin{1}))
+        p = set(p,'Population',varargin{1});
+    end
+    if (nargin>1)
+        if(iscell(varargin{2}))
+            p = set(p,'Phenotype',varargin{2});
+        end
+    end
+    if (nargin>2)
+        if(iscell(varargin{3}))
+            p = set(p,'Cost',varargin{3});
+        end
+    end
+end

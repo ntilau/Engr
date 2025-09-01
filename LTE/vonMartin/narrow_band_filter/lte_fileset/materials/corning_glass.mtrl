@@ -1,0 +1,8 @@
+{ FILE corning_glass.mtrl
+  { MATERIAL_PROPERTY corning_glass
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 5.75 }
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

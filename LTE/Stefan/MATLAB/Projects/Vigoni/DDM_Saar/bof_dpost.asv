@@ -1,0 +1,35 @@
+sweep.epsilonstart=2.;
+sweep.epsilonend=10.;
+sweep.epsilonN = 5;
+sweep.matlabel = 2;
+
+for kk=1:sweep.epsilonN
+    sweep.epsilon = (sweep.epsilonend-sweep.epsilonstart)*(kk-1)/(sweep.epsilonN-1)+sweep.epsilonstart;
+
+    [S,S11DDM,S21DDM,S12DDM,S22DDM,freqDDM] = ehdevDD('GEO/dpost_finemesh.fem','GEO/dpost_cmeshS.fem','GEO/dpost.aux','GEO/dpostDD.out',0,sweep);
+
+    S11(:,kk) =S11DDM(:,1);
+    S12(:,kk) =S12DDM(:,1);
+    S21(:,kk) =S21DDM(:,1);
+    S22(:,kk) =S22DDM(:,1);
+    
+    freq(:,kk) = freqDDM';
+    epsilon(:,kk) = sweep.epsilon.*((1:size(freqDDM,2))./(1:size(freqDDM,2)))'
+end
+
+TheBigThing.freq = freq;
+TheBigThing.epsilon = epsilon;
+TheBigThing.freq = freq;
+TheBigThing.freq = freq;
+TheBigThing.freq = freq;
+TheBigThing.freq = freq;
+
+save('freq.mat','freq');
+save('epsilon.mat','freq','-ASCII');
+save('S11.mat','S11','-ASCII');
+save('S12.mat','S12','-ASCII');
+save('S21.mat','S21','-ASCII');
+save('S22.mat','S22','-ASCII');
+
+
+

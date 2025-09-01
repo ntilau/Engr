@@ -1,0 +1,39 @@
+Face PerfE1
+	PerfectE
+
+Face WavePort1
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+			WavePort1_IntLine_1 			CharImp Zpi
+		RenormImp 0.0000000000000000e+00
+	ExcitationPhase (1.0000000000000000e+00,0.0000000000000000e+00)
+
+Face WavePort2
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+			WavePort2_IntLine_1 			CharImp Zpi
+		RenormImp 0.0000000000000000e+00
+	ExcitationPhase (1.0000000000000000e+00,0.0000000000000000e+00)
+
+Face WavePort3
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+			WavePort3_IntLine_1 			CharImp Zpi
+		RenormImp 0.0000000000000000e+00
+	ExcitationPhase (1.0000000000000000e+00,0.0000000000000000e+00)
+
+Face WavePort4
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+			WavePort4_IntLine_1 			CharImp Zpi
+		RenormImp 0.0000000000000000e+00
+	ExcitationPhase (1.0000000000000000e+00,0.0000000000000000e+00)
+

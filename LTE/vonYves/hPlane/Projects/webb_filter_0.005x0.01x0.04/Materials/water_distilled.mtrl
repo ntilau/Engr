@@ -1,0 +1,8 @@
+{ FILE water_distilled.mtrl
+{ MATERIAL_PROPERTY water_distilled
+	3
+	EPSILON_RELATIVE Scal_Real { AR 1 4.0 } 
+	MU_RELATIVE Scal_Real { AR 1 0.999991 } 
+	SIGMA Scal_Real { AR 1 0.00002 } 
+}
+}

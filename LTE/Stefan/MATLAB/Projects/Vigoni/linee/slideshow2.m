@@ -1,0 +1,9 @@
+load_p(377,1,81,1)
+pause
+load_p(377,1,4,1)
+pause
+load_p(377,1,1,1)
+pause
+load_p(377,1,1,4)
+pause
+load_p(377,1,1,81)

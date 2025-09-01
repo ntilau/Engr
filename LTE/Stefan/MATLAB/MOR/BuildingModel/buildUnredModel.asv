@@ -1,0 +1,106 @@
+function unredModel = buildUnredModel(rawModel, linFreqParamFlag, transparentFlag)
+
+
+if transparentFlag && linFreqParamFlag
+    error('Transparent BCs (TranspFlag = true) do not lead to linear parameter dependence!');
+end
+
+% construct matrix with the ordering of the coefficients
+permutMat=[];   % first column describes frequency dependence
+if linFreqParamFlag
+    maxOrder = 1;   % maximum order of parameter dependence
+else
+    maxOrder = 3;   % maximum order of parameter dependence
+end
+for k=0:maxOrder
+    permutMat = rec(rawModel.numParams, k, permutMat, 0, 1);
+end
+
+unredModel.sysMat{1} = rawModel.sys0;
+
+if linFreqParamFlag
+    unredModel.sysMat{2} = -rawModel.k0^2 * rawModel.k2_mat;
+    % linear material parameter dependences
+    for k = 1:length(rawModel.paramNames)
+        row = zeros(1,rawModel.numParams);  % row describing parameter dependence
+        row(k+1) = 1;               % linear parameter dependence
+        rowPos = findRowInMat(row,permutMat);
+        if strfind(rawModel.paramNames{k}, 'EPSILON_RELATIVE')
+            error('EPSILON_RELATIVE does not lead to linear parameter dependence!');
+        elseif strfind(rawModel.paramNames{k}, 'MU_RELATIVE')
+            unredModel.sysMat{rowPos} = rawModel.paramMat{k};
+        else
+            error('Unknown material parameter!');
+        end
+    end
+    if rawModel.abcFlag
+        error('ABCs do not lead to linear parameter dependence!');
+    end
+else
+    % linear material parameter dependences
+    for k = 1:length(rawModel.paramNames)
+        row = zeros(1, numParams);  % row describing parameter dependence
+        row(k+1) = 1;               % linear parameter dependence
+        rowPos = findRowInMat(row,permutMat);
+        if strfind(rawModel.paramNames{k}, 'EPSILON_RELATIVE')
+            unredModel.sysMat{rowPos} = -rawModel.k0^2 * rawModel.paramMat{k};
+        elseif strfind(rawModel.paramNames{k}, 'MU_RELATIVE')
+            unredModel.sysMat{rowPos} = rawModel.paramMat{k};
+        else
+            error('Unknown material parameter!');
+        end
+    end
+
+    unredModel.sysMat{2} = -2 * rawModel.k0^2 * rawModel.k2_mat;   % linear k dependence
+
+    if rawModel.abcFlag
+        unredModel.sysMat{2} = unredModel.sysMat{2} + rawModel.abcMat;
+    end
+    
+    c0 = 299792.458e3;
+    mu0 = 4e-7*pi;
+    eta0 = mu0*c0;
+
+    if transparentFlag
+        factor =  j * rawModel.k0 * eta0;
+        for identCnt = 1:length(rawModel.ident)
+            unredModel.sysMat{1} = unredModel.sysMat{1} + factor*rawModel.ident{identCnt};
+            unredModel.sysMat{2} = unredModel.sysMat{2} + factor*rawModel.ident{identCnt};
+        end
+    end
+
+    % second order dependence:
+    unredModel.sysMat{rawModel.numParams + 2} = -rawModel.k0^2 * rawModel.k2_mat;  % k^2 dependence is -k^2*T
+    for k = 1:length(rawModel.paramNames)
+        row = zeros(1,numParams);   % row describing parameter dependence
+        row(1) = 1;                 % linear frequency dependence
+        row(k+1) = 1;               % linear parameter dependence
+        rowPos = findRowInMat(row,permutMat);
+        if strfind(rawModel.paramNames{k}, 'EPSILON_RELATIVE')
+            unredModel.sysMat{rowPos} = -2 * rawModel.k0^2 * rawModel.paramMat{k};
+        end
+    end
+
+    % third order dependence:
+    for k = 1:length(rawModel.paramNames)
+        row = zeros(1,numParams);   % row describing parameter dependence
+        row(1) = 2;                 % square frequency dependence
+        row(k+1) = 1;               % linear parameter dependence
+        rowPos = findRowInMat(row,permutMat);
+        if strfind(rawModel.paramNames{k}, 'EPSILON_RELATIVE')
+            unredModel.sysMat{rowPos} = -rawModel.k0^2 * rawModel.paramMat{k};
+        end
+    end
+end
+
+unredModel.permutMat       = permutMat;
+unredModel.paramNames      = rawModel.paramNames;
+unredModel.paramValInExp   = rawModel.paramValInExp;
+unredModel.numLeftVecs     = rawModel.numLeftVecs;
+unredModel.useKrylovSpaces = rawModel.useKrylovSpaces;
+unredModel.numParams       = rawModel.numParams;
+unredModel.ident           = rawModel.ident;
+unredModel.rhs             = rawModel.rhs;
+unredModel.lVec            = rawModel.lVec;
+unredModel.k0              = rawModel.k0;
+

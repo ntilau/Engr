@@ -1,0 +1,9 @@
+load_t(50,1,0)
+pause
+load_t(50,1,10)
+pause
+load_t(50,1,50)
+pause
+load_t(50,1,100)
+pause
+load_t(50,1,10^6)

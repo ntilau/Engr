@@ -1,0 +1,8 @@
+{ FILE GE_GETEK_ML200_RG200__tm.mtrl
+  { MATERIAL_PROPERTY GE_GETEK_ML200_RG200__tm
+    3
+    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3.9,-0.0468) } 
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

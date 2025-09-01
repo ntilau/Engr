@@ -1,0 +1,8 @@
+{ FILE palladium.mtrl
+  { MATERIAL_PROPERTY palladium
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 1 }
+    MU_RELATIVE Scal_Real { AR 1 1.00082 }
+    SIGMA Scal_Real { AR 1 9300000 }
+  }
+}

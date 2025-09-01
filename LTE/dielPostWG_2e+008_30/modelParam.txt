@@ -1,0 +1,4 @@
+f0 2e+008
+numMaterialParams 0
+ABC no
+NumLeftVecs 2

@@ -1,0 +1,31 @@
+function p = Crossover( p )
+
+N = p.population.Nind
+%%% Prepares couples for mating, random selection
+for j = 1:N
+    j1 = fix(rand*N)+1;
+    j2 = fix(rand*N)+1;
+    aux = p.population.specimens{p.population.Ngen+1}{j1};
+    p.population.specimens{p.population.Ngen+1}{j1} = ...
+        p.population.specimens{p.population.Ngen+1}{j2};
+    p.population.specimens{p.population.Ngen+1}{j2} = aux;
+end;
+   
+%%% Cross over vero e proprio
+NXOver = 0;
+
+for j = 1 : fix(N/2);
+    j1 = 2*j-1;
+    j2 = 2*j;
+    if(rand < p.settingsXOverProb)
+        M = length(p.population.specimens{p.population.Ngen+1}{j1};
+        k = fix(rand*M)+1;
+        aux =  p.population.specimens{p.population.Ngen+1}{j1};
+        p.population.specimens{p.population.Ngen+1}{j1}(k:M) = ...
+            p.population.specimens{p.population.Ngen+1}{j2}(k:M);
+        
+        ...;(j1, k:Mc*bpp) = c(j2,k:Mc*bpp);
+         c(j2, k:Mc*bpp) = aux(k:Mc*bpp);
+         nxo = nxo + 1;
+      end;
+   end;

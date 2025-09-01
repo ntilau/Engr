@@ -1,0 +1,8 @@
+{ FILE ground.mtrl
+{ MATERIAL_PROPERTY diel1
+	3
+	EPSILON_RELATIVE Scal_Complex { AC 1 (4.1998971,-29.39928e-003) } 
+	MU_RELATIVE Scal_Real { AR 1 1.0 } 
+	SIGMA Scal_Real { AR 1 0.0 } 
+}
+}

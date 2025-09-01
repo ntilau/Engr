@@ -1,0 +1,953 @@
+close all;
+clear;
+
+format short e;
+addpath(genpath('C:\work\Matlab'));
+set(0, 'DefaultFigureWindowStyle', 'docked');
+modelPath = 'C:\work\examples\MOR_Example_VoithSiemens\';
+shortFlag = true;
+dirPath = [modelPath 'results\'];
+linewidth = 2.0;
+fontsize = 12;
+markersize = 3.0;
+
+
+%% Dmpr = 0.1, Impd = 1
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_50_Frequency_50_Dmpr_0.1_Impd_1_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_100_Frequency_50_Dmpr_0.1_Impd_1_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResultsRom);
+resultsRom = results;
+paramSpaceRom = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine = results;
+paramSpaceRomFine = paramSpace;
+% fNameResultsRom = solveModelVS(modelNameRom);
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom = cell(length(outputId), 1);
+plotDataRomFine = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+  'Location', 'North');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0.2, Impd = 2
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_50_Frequency_50_Dmpr_0.2_Impd_2_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_100_Frequency_50_Dmpr_0.2_Impd_2_FreqOnly_1\';
+% fNameResultsRom = solveModelVS(modelNameRom);
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom = results;
+paramSpaceRom = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine = results;
+paramSpaceRomFine = paramSpace;
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom = cell(length(outputId), 1);
+plotDataRomFine = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth, 'MarkerSize', markersize);
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+  'Location', 'North');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0, Impd = 0: pure quadratic frequency dependence
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0_100_1_Impd_0_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\pureQuadraticFrequency_rom_50_Frequency_50_Dmpr_0_Impd_0\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\pureQuadraticFrequency_rom_100_Frequency_50_Dmpr_0_Impd_0\';
+% fNameResultsRom = solveModelVS(modelNameRom);
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRom);
+resultsRom = results;
+paramSpaceRom = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine = results;
+paramSpaceRomFine = paramSpace;
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom = cell(length(outputId), 1);
+plotDataRomFine = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+hold;
+% grid;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+  'Location', 'North');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0.2, Impd = 0: pure quadratic frequency dependence
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\pureQuadraticFrequency_rom_50_Frequency_50_Dmpr_0.2_Impd_0\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\pureQuadraticFrequency_rom_100_Frequency_50_Dmpr_0.2_Impd_0\';
+% fNameResultsRom = solveModelVS(modelNameRom);
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRom);
+resultsRom = results;
+paramSpaceRom = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine = results;
+paramSpaceRomFine = paramSpace;
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom = cell(length(outputId), 1);
+plotDataRomFine = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+  'Location', 'North');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0, Impd = 2 with order 150
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_50_Frequency_50_Dmpr_0_Impd_2_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_100_Frequency_50_Dmpr_0_Impd_2_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom = results;
+paramSpaceRom = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine = results;
+paramSpaceRomFine = paramSpace;
+% fNameResultsRom = solveModelVS(modelNameRom);
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_150_Frequency_50_Dmpr_0_Impd_2_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom150 = results;
+paramSpaceRom150 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine150 = results;
+paramSpaceRomFine150 = paramSpace;
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom = cell(length(outputId), 1);
+plotDataRomFine = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+plotDataRom150 = cell(length(outputId), 1);
+plotDataRomFine150 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+  plotDataRom150{outCnt} = plotResultsVS(resultsRom150, params, paramSpaceRom150, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine150{outCnt} = plotResultsVS(resultsRomFine150, params, paramSpaceRomFine150, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+plot(plotDataRomFine150{1}.xData, abs(plotDataRomFine150{1}.yData), '-.', 'LineWidth', linewidth);
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotDataRomFine150{2}.xData, abs(plotDataRomFine150{2}.yData), 'r-.', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotDataRomFine150{3}.xData, abs(plotDataRomFine150{3}.yData), 'k-.', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+% legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+%   'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - ROM 150', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - ROM 150', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - ROM 150', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+semilogy(plotDataRomFine150{1}.xData, abs(plotDataRomFine150{1}.yData), '-.', 'LineWidth', linewidth);
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRomFine150{2}.xData, abs(plotDataRomFine150{2}.yData), 'r-.', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotDataRomFine150{3}.xData, abs(plotDataRomFine150{3}.yData), 'k-.', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+% legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+%   'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - ROM 150', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - ROM 150', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - ROM 150', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+semilogy(plotDataRom150{1}.xData, abs(plotData{1}.yData - plotDataRom150{1}.yData) ./ abs(plotData{1}.yData), '-.', 'LineWidth', linewidth);
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom150{2}.xData, abs(plotData{2}.yData - plotDataRom150{2}.yData) ./ abs(plotData{2}.yData), 'r-.', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotDataRom150{3}.xData, abs(plotData{3}.yData - plotDataRom150{3}.yData) ./ abs(plotData{3}.yData), 'k-.', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+% legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+%   'Location', 'North');
+legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_1 - ROM 150', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_2 - ROM 150', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+  'e_3 - ROM 150', 'Location', 'North');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0, Impd = 2 without order 150
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_50_Frequency_50_Dmpr_0_Impd_2_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_100_Frequency_50_Dmpr_0_Impd_2_FreqOnly_1\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom = results;
+paramSpaceRom = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine = results;
+paramSpaceRomFine = paramSpace;
+% fNameResultsRom = solveModelVS(modelNameRom);
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine150 = results;
+paramSpaceRomFine150 = paramSpace;
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom = cell(length(outputId), 1);
+plotDataRomFine = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+% legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - ROM 150', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - ROM 150', 'x_2 - Full FE', ...
+%   'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - ROM 150', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData), 'LineWidth', linewidth);
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+  'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+% legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - ROM 150', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - ROM 150', 'x_2 - Full FE', ...
+%   'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - ROM 150', 'x_3 - Full FE');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--', 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--', 'LineWidth', linewidth);
+semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--', 'LineWidth', linewidth);
+semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+  'Location', 'North');
+% legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_1 - ROM 150', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_2 - ROM 150', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+%   'e_3 - ROM 150', 'Location', 'North');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0.1, Impd = 1: multiparameter ROM order 8 with expansion point
+%% Dmpr = 0.1, Impd = 1
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_8_Frequency_50_Dmpr_0.1_Impd_1_FreqOnly_0\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.1_100_1_Impd_1_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+% fNameResultsRom = solveModelVS(modelNameRom);
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), 'LineWidth', linewidth);
+hold;
+% grid;
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 8', 'x_1 - Full FE', 'x_2 - ROM 8', 'x_2 - Full FE', ...
+  'x_3 - ROM 8', 'x_3 - Full FE', 'Location', 'NorthEast');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 8', 'x_1 - Full FE', 'x_2 - ROM 8', 'x_2 - Full FE', ...
+  'x_3 - ROM 8', 'x_3 - Full FE', 'Location', 'SouthEast');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+legend('e_1 - ROM 8', 'e_2 - ROM 8', 'e_3 - ROM 8', 'Location', 'SouthEast');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0.2, Impd = 2: multiparameter ROM order 8 with expansion point
+%% Dmpr = 0.1, Impd = 1
+fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResults);
+resultsFull = results;
+paramSpaceFull = paramSpace;
+modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_8_Frequency_50_Dmpr_0.1_Impd_1_FreqOnly_0\';
+fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRom);
+resultsRom50 = results;
+paramSpaceRom50 = paramSpace;
+fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.2_100_1_Impd_2_100_1.mat'];
+load(fNameResultsRomFine);
+resultsRomFine50 = results;
+paramSpaceRomFine50 = paramSpace;
+% fNameResultsRom = solveModelVS(modelNameRom);
+outputId{1} = [1 1];
+outputId{2} = [2 1];
+outputId{3} = [3 1];
+plotData = cell(length(outputId), 1);
+plotDataRom50 = cell(length(outputId), 1);
+plotDataRomFine50 = cell(length(outputId), 1);
+for outCnt = 1 : length(outputId)
+  plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+  close(gcf);
+  plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+  close(gcf);
+  plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+  close(gcf);
+end
+
+figure;
+plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), 'LineWidth', linewidth);
+hold;
+% grid;
+plot(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r', 'LineWidth', linewidth);
+plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k', 'LineWidth', linewidth);
+plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 8', 'x_1 - Full FE', 'x_2 - ROM 8', 'x_2 - Full FE', ...
+  'x_3 - ROM 8', 'x_3 - Full FE', 'Location', 'NorthEast');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotData{1}.xData, abs(plotData{1}.yData), 'd', 'LineWidth', linewidth, 'MarkerSize', markersize);
+semilogy(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotData{2}.xData, abs(plotData{2}.yData), 'rx', 'LineWidth', linewidth);
+semilogy(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k', 'LineWidth', linewidth);
+semilogy(plotData{3}.xData, abs(plotData{3}.yData), 'ko', 'LineWidth', linewidth, 'MarkerSize', markersize);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|x_i|', 'FontSize', fontsize);
+legend('x_1 - ROM 8', 'x_1 - Full FE', 'x_2 - ROM 8', 'x_2 - Full FE', ...
+  'x_3 - ROM 8', 'x_3 - Full FE', 'Location', 'NorthEast');
+set(gca, 'FontSize', fontsize);
+
+figure;
+semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), 'LineWidth', linewidth);
+hold;
+% grid;
+semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r', 'LineWidth', linewidth);
+semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k', 'LineWidth', linewidth);
+xlabel('Frequency (Hz)', 'FontSize', fontsize);
+ylabel('|e_i|', 'FontSize', fontsize);
+legend('e_1 - ROM 8', 'e_2 - ROM 8', 'e_3 - ROM 8', 'Location', 'SouthEast');
+set(gca, 'FontSize', fontsize);
+
+
+%% Dmpr = 0.2, Impd = 0: real quadratic frequency dependence
+% fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+% load(fNameResults);
+% resultsFull = results;
+% paramSpaceFull = paramSpace;
+% modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_150_Frequency_50_Dmpr_0.2_Impd_0_FreqOnly_1\';
+% fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRom);
+% resultsRom = results;
+% paramSpaceRom = paramSpace;
+% fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRomFine);
+% resultsRomFine = results;
+% paramSpaceRomFine = paramSpace;
+% % modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_50_Frequency_50_Dmpr_0.2_Impd_0_FreqOnly_1\';
+% modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_150_Frequency_50_Dmpr_0.2_Impd_0_FreqOnly_1_b\';
+% fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRom);
+% resultsRom50 = results;
+% paramSpaceRom50 = paramSpace;
+% fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0.2_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRomFine);
+% resultsRomFine50 = results;
+% paramSpaceRomFine50 = paramSpace;
+% % fNameResultsRom = solveModelVS(modelNameRom);
+% outputId{1} = [1 1];
+% outputId{2} = [2 1];
+% outputId{3} = [3 1];
+% plotData = cell(length(outputId), 1);
+% plotDataRom = cell(length(outputId), 1);
+% plotDataRomFine = cell(length(outputId), 1);
+% plotDataRom50 = cell(length(outputId), 1);
+% plotDataRomFine50 = cell(length(outputId), 1);
+% for outCnt = 1 : length(outputId)
+%   plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+%   plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+%   plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+%   plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+%   plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+% end
+% 
+% figure;
+% hold;
+% grid;
+% plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--');
+% plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData));
+% plot(plotData{1}.xData, abs(plotData{1}.yData), 'd');
+% plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--');
+% plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r');
+% plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx');
+% plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--');
+% plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k');
+% plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko');
+% xlabel('Frequency (Hz)');
+% ylabel('|x_i|');
+% % legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+% %   'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+% legend('x_1 - ROM 150a', 'x_1 - ROM 150b', 'x_1 - Full FE', 'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - Full FE', ...
+%   'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - Full FE');
+% 
+% figure;
+% semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--');
+% hold;
+% grid;
+% semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData));
+% semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--');
+% semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r');
+% semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--');
+% semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k');
+% xlabel('Frequency (Hz)');
+% ylabel('|e_i|');
+% % legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+% %   'Location', 'North');
+% legend('e_1 - ROM 150a', 'e_1 - ROM 150b', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_3 - ROM 50', 'e_3 - ROM 100', ...
+%   'Location', 'North');
+
+
+%% Dmpr = 0, Impd = 0: real quadratic frequency dependence
+% fNameResults = [dirPath 'Frequency_0_100_201_Dmpr_0_100_1_Impd_0_100_1.mat'];
+% load(fNameResults);
+% resultsFull = results;
+% paramSpaceFull = paramSpace;
+% % modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_150_Frequency_50_Dmpr_0_Impd_0_FreqOnly_1\';
+% modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\pureQuadraticFrequency_rom_100_Frequency_50_Dmpr_0_Impd_0_h\';
+% fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRom);
+% resultsRom150 = results;
+% paramSpaceRom150 = paramSpace;
+% fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRomFine);
+% resultsRomFine150 = results;
+% paramSpaceRomFine150 = paramSpace;
+% modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_100_Frequency_50_Dmpr_0_Impd_0_FreqOnly_1\';
+% % modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_100_Frequency_50_Dmpr_0_Impd_0_FreqOnly_1_c\';
+% fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRom);
+% resultsRom = results;
+% paramSpaceRom = paramSpace;
+% fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRomFine);
+% resultsRomFine = results;
+% paramSpaceRomFine = paramSpace;
+% modelNameRom = 'C:\work\examples\MOR_Example_VoithSiemens\results\rom_50_Frequency_50_Dmpr_0_Impd_0_FreqOnly_1\';
+% fNameResultsRom = [modelNameRom 'Frequency_0_100_201_Dmpr_0_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRom);
+% resultsRom50 = results;
+% paramSpaceRom50 = paramSpace;
+% fNameResultsRomFine = [modelNameRom 'Frequency_0_100_2001_Dmpr_0_100_1_Impd_0_100_1.mat'];
+% load(fNameResultsRomFine);
+% resultsRomFine50 = results;
+% paramSpaceRomFine50 = paramSpace;
+% % fNameResultsRom = solveModelVS(modelNameRom);
+% outputId{1} = [1 1];
+% outputId{2} = [2 1];
+% outputId{3} = [3 1];
+% plotData = cell(length(outputId), 1);
+% plotDataRom = cell(length(outputId), 1);
+% plotDataRomFine = cell(length(outputId), 1);
+% plotDataRom50 = cell(length(outputId), 1);
+% plotDataRomFine50 = cell(length(outputId), 1);
+% plotDataRom150 = cell(length(outputId), 1);
+% plotDataRomFine150 = cell(length(outputId), 1);
+% for outCnt = 1 : length(outputId)
+%   plotData{outCnt} = plotResultsVS(resultsFull, params, paramSpaceFull, outputId{outCnt});
+%   plotDataRom150{outCnt} = plotResultsVS(resultsRom150, params, paramSpaceRom150, outputId{outCnt});
+%   plotDataRomFine150{outCnt} = plotResultsVS(resultsRomFine150, params, paramSpaceRomFine150, outputId{outCnt});
+%   plotDataRom{outCnt} = plotResultsVS(resultsRom, params, paramSpaceRom, outputId{outCnt});
+%   plotDataRomFine{outCnt} = plotResultsVS(resultsRomFine, params, paramSpaceRomFine, outputId{outCnt});
+%   plotDataRom50{outCnt} = plotResultsVS(resultsRom50, params, paramSpaceRom50, outputId{outCnt});
+%   plotDataRomFine50{outCnt} = plotResultsVS(resultsRomFine50, params, paramSpaceRomFine50, outputId{outCnt});
+% end
+% 
+% figure;
+% hold;
+% grid;
+% plot(plotDataRomFine50{1}.xData, abs(plotDataRomFine50{1}.yData), '--');
+% plot(plotDataRomFine{1}.xData, abs(plotDataRomFine{1}.yData));
+% plot(plotDataRomFine150{1}.xData, abs(plotDataRomFine150{1}.yData), ':');
+% plot(plotData{1}.xData, abs(plotData{1}.yData), 'd');
+% plot(plotDataRomFine50{2}.xData, abs(plotDataRomFine50{2}.yData), 'r--');
+% plot(plotDataRomFine{2}.xData, abs(plotDataRomFine{2}.yData), 'r');
+% plot(plotDataRomFine150{2}.xData, abs(plotDataRomFine150{2}.yData), 'r:');
+% plot(plotData{2}.xData, abs(plotData{2}.yData), 'rx');
+% plot(plotDataRomFine50{3}.xData, abs(plotDataRomFine50{3}.yData), 'k--');
+% plot(plotDataRomFine{3}.xData, abs(plotDataRomFine{3}.yData), 'k');
+% plot(plotDataRomFine150{3}.xData, abs(plotDataRomFine150{3}.yData), 'k:');
+% plot(plotData{3}.xData, abs(plotData{3}.yData), 'ko');
+% xlabel('Frequency (Hz)');
+% ylabel('|x_i|');
+% legend('x_1 - ROM 50', 'x_1 - ROM 100', 'x_1 - ROM 150', 'x_1 - Full FE', ...
+%   'x_2 - ROM 50', 'x_2 - ROM 100', 'x_2 - ROM 150', 'x_2 - Full FE', ...
+%   'x_3 - ROM 50', 'x_3 - ROM 100', 'x_3 - ROM 150', 'x_3 - Full FE');
+% 
+% figure;
+% semilogy(plotDataRom50{1}.xData, abs(plotData{1}.yData - plotDataRom50{1}.yData) ./ abs(plotData{1}.yData), '--');
+% hold;
+% grid;
+% semilogy(plotDataRom{1}.xData, abs(plotData{1}.yData - plotDataRom{1}.yData) ./ abs(plotData{1}.yData));
+% semilogy(plotDataRom150{1}.xData, abs(plotData{1}.yData - plotDataRom150{1}.yData) ./ abs(plotData{1}.yData), ':');
+% semilogy(plotDataRom50{2}.xData, abs(plotData{2}.yData - plotDataRom50{2}.yData) ./ abs(plotData{2}.yData), 'r--');
+% semilogy(plotDataRom{2}.xData, abs(plotData{2}.yData - plotDataRom{2}.yData) ./ abs(plotData{2}.yData), 'r');
+% semilogy(plotDataRom150{2}.xData, abs(plotData{2}.yData - plotDataRom150{2}.yData) ./ abs(plotData{2}.yData), 'r:');
+% semilogy(plotDataRom50{3}.xData, abs(plotData{3}.yData - plotDataRom50{3}.yData) ./ abs(plotData{3}.yData), 'k--');
+% semilogy(plotDataRom{3}.xData, abs(plotData{3}.yData - plotDataRom{3}.yData) ./ abs(plotData{3}.yData), 'k');
+% semilogy(plotDataRom150{3}.xData, abs(plotData{3}.yData - plotDataRom150{3}.yData) ./ abs(plotData{3}.yData), 'k:');
+% xlabel('Frequency (Hz)');
+% ylabel('|e_i|');
+% legend('e_1 - ROM 50', 'e_1 - ROM 100', 'e_1 - ROM 150', 'e_2 - ROM 50', 'e_2 - ROM 100', 'e_2 - ROM 150', ...
+%   'e_3 - ROM 50', 'e_3 - ROM 100', 'e_3 - ROM 150', 'Location', 'North');
+
+

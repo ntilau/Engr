@@ -1,0 +1,24 @@
+function polesFreq = calcPolesFreq(pathName, k0)
+
+fNameSys0 = strcat(pathName, 'sysMatReduced0');
+sys0 = readMatFull(fNameSys0);
+fNameSys2 = strcat(pathName, 'sysMatReduced2');
+sys2 = readMatFull(fNameSys2);
+fNameIdent = strcat(pathName, 'identRed');
+ident = readMatFull(fNameIdent);
+
+c0 = 299792.458e3;
+mu0_ = 4e-7*pi;
+eta0 = mu0_*c0;
+
+%sys0 = sys0+j*k0*eta0*ident;
+
+polesFreq = eig(sys0,sys2);
+polesFreq = c0/(2*pi)*sqrt(k0^2+polesFreq);
+
+% solve polynomial eigenvalue problem: (A0 + k*A1 + k^2*A2)*x = 0
+A0 = sys0+k0^2*sys2;
+A1 = j*eta0*ident;
+A2 = -1*sys2;
+k = polyeig(A0,A1,A2);
+polesFreq = c0/(2*pi);

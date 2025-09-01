@@ -1,0 +1,8 @@
+{ FILE aluminum.mtrl
+  { MATERIAL_PROPERTY aluminum
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 1 }
+    MU_RELATIVE Scal_Real { AR 1 1.000021 }
+    SIGMA Scal_Real { AR 1 38000000 }
+  }
+}

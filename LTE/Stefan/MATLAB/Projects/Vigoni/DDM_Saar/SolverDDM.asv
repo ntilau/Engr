@@ -1,0 +1,33 @@
+function [B,Y,Efield] = SolverDDM(S, IAC, BC,CD,IC,ID,sweep,ND,ik)
+%**************************************************************************
+%   [B,Y] = SolverDDM(S, IAC,BC,CD,IC,ID)
+%**************************************************************************
+%
+%   Shur-complement matrix form solver.
+%
+%**************************************************************************
+
+
+% Definition of the Shur-complement matrix.--------------------------------
+
+% Solution of the reduced linear system.-----------------------------------
+global BLOCK
+
+G = (ID.') - CD*IAC*(IC.'); %G = rhs
+Y = S\G; % S = SCdiel_saar
+
+% Expansion mode coefficients extraction.----------------------------------
+B = IAC*((IC.')-BC*Y);
+
+Efield = [];
+for id = 1:ND
+    Ep = BLOCK{id}.Ep;
+    E = BLOCK{id}.E;
+    F = BLOCK{id}.F;
+    X =  - Ep*Y;
+    Efield = [Efield;X];
+end
+Efield = [Efield;Y];
+
+
+return

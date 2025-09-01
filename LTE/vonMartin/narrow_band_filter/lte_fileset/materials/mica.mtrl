@@ -1,0 +1,8 @@
+{ FILE mica.mtrl
+  { MATERIAL_PROPERTY mica
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 5.7 }
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

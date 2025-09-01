@@ -1,0 +1,21 @@
+function [value, index] = accessM2N(table, one, col, direction)
+
+if nargin  >= 3
+    if empty(col)
+        %search
+        col = 1;
+        
+    
+    
+    if nargin >= 4
+% search direction specified    
+    if isempty(intersect(searchDirection, [1,2]))
+        error('Parameter ''searchDirection'' must be member of the set \{1,2\}');
+    elseif searchDirection == 2
+        table = table.';
+    end
+end    
+    
+index = find(table(:,1) == one);
+
+value = table(index,2);

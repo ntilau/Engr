@@ -1,0 +1,46 @@
+function Port = getPortDofs(Model)
+
+Port = struct([]);
+
+for iPort = 1:Model.nPorts
+    boundaryId = Model.Geo.port2Boundary(iPort);
+    polyEdgeId = Model.Geo.Boundary(boundaryId).polyEdgeId;
+    % edges and nodes on port
+    edge = Model.Mesh.PolyEdge(polyEdgeId).edge;
+    node = unique(Model.Mesh.edge(edge,:));
+    
+    portWidth = Model.Geo.portWidth(iPort);
+    
+    % remove outer nodes, which belong to dirichlet 
+    [tmp, outerNode] = getPolyEdgeLength(Model.Mesh, polyEdgeId);
+    
+    % check whether structure's symmetrie is utilized
+    Port(iPort).isPmcBounded = checkPortBounds(Model, outerNode, edge); 
+          
+    node = setdiff(node, outerNode(~Port(iPort).isPmcBounded))';
+    
+    Port(iPort).node = node;
+    Port(iPort).edge = edge;
+    
+    
+    if any(Port(iPort).isPmcBounded)
+        Port(iPort).width = 2 * portWidth;
+        % local coordinate must start at a pec-bound
+        Port(iPort).startNode = ...
+            Port(iPort).outerNode(~Port(iPort).isPmcBounded);    
+    else
+        Port(iPort).width = portWidth;
+        Port(iPort).startNode = outerNode(1);        
+    end
+    
+    if Model.pOrder == 1
+        Port(iPort).dof = node;        
+    elseif Model.pOrder == 2
+        Port(iPort).dof = [node, edge + Model.Mesh.nNodes];        
+    elseif Model.pOrder >= 3
+        error('pOrder = %d is not implemented yet', Model.pOrder);
+    end          
+end
+    
+     
+

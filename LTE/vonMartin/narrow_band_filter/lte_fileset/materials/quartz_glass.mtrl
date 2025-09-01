@@ -1,0 +1,8 @@
+{ FILE quartz_glass.mtrl
+  { MATERIAL_PROPERTY quartz_glass
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 3.78 }
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

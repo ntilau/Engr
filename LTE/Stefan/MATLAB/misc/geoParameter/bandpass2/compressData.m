@@ -1,0 +1,39 @@
+function compressData(dirName)
+
+fNameSysMat = strcat(dirName, 'system matrix');
+systemMatrix = MatrixMarketReader(fNameSysMat);
+fNameSysMatNew = strcat(dirName, 'systemMatrix');
+save(fNameSysMatNew, 'systemMatrix');
+delete(fNameSysMat);
+
+fNameK2Mat = strcat(dirName, 'k^2 matrix');
+k2Matrix = MatrixMarketReader(fNameK2Mat);
+fNameK2MatNew = strcat(dirName, 'k^2matrix');
+save(fNameK2MatNew, 'k2Matrix');
+delete(fNameK2Mat);
+
+fNameDirMarker = strcat(dirName, 'dirMarker.fvec');
+dirMarker = vectorReader(fNameDirMarker);
+fNameDirMarkerNew = strcat(dirName, 'dirMarker');
+save(fNameDirMarkerNew, 'dirMarker');
+delete(fNameDirMarker);
+
+fNameLeftVec0 = strcat(dirName, 'leftVec0');
+leftVec0 = vectorReader(fNameLeftVec0);
+save(fNameLeftVec0, 'leftVec0');
+delete(fNameLeftVec0);
+
+fNameLeftVec1 = strcat(dirName, 'leftVec1');
+leftVec1 = vectorReader(fNameLeftVec1);
+save(fNameLeftVec1, 'leftVec1');
+delete(fNameLeftVec1);
+
+fNameRhs0 = strcat(dirName, 'rhs0');
+rhs0 = vectorReader(fNameRhs0);
+save(fNameRhs0, 'rhs0');
+delete(fNameRhs0);
+
+fNameRhs1 = strcat(dirName, 'rhs1');
+rhs1 = vectorReader(fNameRhs1);
+save(fNameRhs1, 'rhs1');
+delete(fNameRhs1);

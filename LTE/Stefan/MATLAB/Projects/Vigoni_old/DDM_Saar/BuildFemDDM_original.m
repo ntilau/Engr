@@ -1,0 +1,117 @@
+function [BLOCK,C] = BuildFemDDM(MESH,xy,nlab,iNODEc,PO,Np,LPEC,LPMC,...
+                                 ndie,material,plane,vcoeff,vkt2,sweep,ND)
+
+%**************************************************************************
+% [BLOCK,C] = BuildFemDDM(MESH,xy,nlab,iNODEc,PO,Np,LPEC,LPMC,...
+%                                 ndie,material,plane,vcoeff,vkt2)
+%**************************************************************************
+%[INPUT]
+%   MESH è UN CELLARRAY DI TUTTE LE INFORMAZIONI DEI SOTTODOMINI DEL 
+%           DOMINIO PRINCIPALE. CONTIENE: 
+%           ele:        MAPPE DEGLI ELEMENTI 
+%           elab:       LABEL DI ELEMENTO
+%           NNODEi:     NUMERO DI NODI INTERNI
+%           base_NODE:  INDICE DI BASE DEI NODI INTERNI DEL DOMINIO NEL
+%                       VETTORE DEI NODI GLOBALI
+%           
+%   xy:     MATRICE DELLE COORDINATE DEI NODI NELLA NUMERAZIONE ORDINATA
+%           PER SOTTODOMINII  E AVENDO IN CODA I NODI APPARTENENTI ALLE
+%           INTERFACCE TRA DI ESSI. [xy1;xy2;...;xyn;xyB];
+%   nlab:   VETTORE DELLE LABEL DI NODO ORDINATE COME IL VETTORE "NODE"
+%   iNODEc: BASE DEI NODI DI BOUNDARY NEL VETTORE DEI NODI GLOBALE
+%**************************************************************************
+%[OUTPUT]
+%   BLOCK:  CELLARRAY DELLE MATRICI DI BLOCCO {Mi,Ei,Fi}
+%   C:      SPARSE SHUR MATRIX OF THE GLOBAL PROBLEM 
+%**************************************************************************
+
+%NUMBER OF GLOBAL NODEs
+NNODEg = size(xy,2);
+%NUMBER OF INTERNAL NODEs
+NNODEi = iNODEc;
+%NUMBER OF BOUNDARY NODEs
+NNODEb = NNODEg - iNODEc;
+
+C = spalloc(NNODEb,NNODEb,NNODEb);
+
+% SUB-DOMAIN CYCLE
+for d = 1:(ND-1)
+    
+    NNODE= MESH{d}.NNODEi;        %Subdomain internal node number
+    ele  = MESH{d}.ele;           %Subdomain internal element map
+    elab = MESH{d}.elab;          %Element lables
+    ibase= MESH{d}.BASE;     %Internal nodes base index in to the "xy" vector
+    NELE = size(ele,2);           %Subdomain element number
+    clear M;
+    
+    
+    M = spalloc(NNODE, NNODE, NNODE);   %Subdomain nodes interaction FEM-matrix 
+    E = spalloc(NNODE, NNODEb,NNODE);   %Subdomain\Boundary nodes interaction FEM-matrix
+    F = spalloc(NNODEb,NNODE, NNODE);   %Boundary\Subdomain nodes interaction FEM-matrix
+    
+    %main loop on elements
+    for ie =1:NELE
+        %Set the material of the element to build up
+        imat=1;
+        if plane =='H'
+            for i=1:ndie
+                if (elab(ie)==material(i))
+                    imat = i; %material identification
+                end    
+            end
+        end
+        %------------Builds the element matrices
+        lds =   ele(1,ie);      %element type and order
+        [Se,Te] =   elenmat(xy,ele,ie,lds,lds);
+        %------------Builds the global matrix
+        for j=1:ele(1,ie)
+            iauxj  =   ele(j+1,ie);    %global index
+            iauxi  =   nlab(iauxj);    %global index label
+            if not( (iauxi==LPEC & plane == 'H') | (iauxi==LPMC & plane == 'E') )
+                for k = 1:ele(1,ie)
+                    iauxk = ele(k+1,ie);
+                    
+                    caux  = vcoeff(imat)*( - Se(j,k) + vkt2(imat)*Te(j,k));
+                    % M-matrix storage
+                    if    (iauxj<=NNODEi) &(iauxk<=NNODEi) 
+                        M(iauxj-ibase,iauxk-ibase)  = M(iauxj-ibase,iauxk-ibase) + caux;
+                        % E-matrix storage
+                    elseif(iauxj<=NNODEi) &(iauxk>NNODEi) 
+                        E(iauxj-ibase,iauxk-iNODEc) = E(iauxj-ibase,iauxk-iNODEc) + caux;
+                    elseif(iauxj>NNODEi)  &(iauxk<=NNODEi) %=> F-matrix storage
+                        F(iauxj-iNODEc,iauxk-ibase) = F(iauxj-iNODEc,iauxk-ibase) + caux;
+                    else%=> C-matrix storage
+                        C(iauxj-iNODEc,iauxk-iNODEc) = C(iauxj-iNODEc,iauxk-iNODEc) + caux;
+                    end
+                    
+                end
+            else     
+                %Imposes the BC
+                C(iauxj-iNODEc,iauxj-iNODEc) = 1;
+            end
+        end
+    end
+    % Adds the pec conditions at the port sides for H plane
+    MAXPO = size(PO,1);
+    if (plane == 'H')
+        for ip=1:Np
+            for j=1:2
+                if (j==1) 
+                    iauxj = PO(1,ip);
+                end
+                if (j==2) 
+                    iauxj = PO(PO(MAXPO,ip),ip);
+                end
+                F(iauxj-iNODEc,:) = zeros(1,NNODE);
+                C(iauxj-iNODEc,:) = zeros(1,NNODEb);
+                C(iauxj-iNODEc,iauxj-iNODEc) = 1;
+            end
+        end
+    end
+    
+    BLOCK{d} = struct('M',M,'E',E,'F',F);
+   
+end % END OF CYCLE ON SUBDOMAINS
+save('OrigBLOCK', 'BLOCK') ;
+return
+%------------------------end of BuildFemDDM function-----------------------

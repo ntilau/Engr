@@ -1,0 +1,111 @@
+=== BEGIN SESSION ==========================================================
+[09:55:21] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:55:21] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:55:21] Problem class: High Frequency
+[09:55:21] Creating ModelDatabase
+[09:55:21] - Model stats: VERTICES = 42, EDGES = 68, FACES = 32, CELLS = 3
+[09:55:21] - Mesh sizes: global = 4.0004, min = 2.37007, max = 4.0004
+[09:55:21] - OK
+[09:55:21] Surface meshing
+[09:55:21] - Preparing surface mesh
+[09:55:21] - Storing model cells
+[09:55:21] - OK
+[09:55:21] -- Reading additional model attributes
+[09:55:21] -- OK
+[09:55:21] -- Building object info
+[09:55:21] -- OK
+[09:55:21] -- Setting mesh densities
+[09:55:21] Creating surface mesh
+[09:55:22] - Surface mesh stats: Nb nodes = 1112, Nb edges = 3472, Nb faces = 2363
+[09:55:22] - Min/Max edge length after surface meshing: min = 0.05, max = 4.24569
+[09:55:22] Temporary directory: "C:\Work\_LOCAL\CST\circular_resonator\resonator\Temp\1-temp.tet"
+[09:55:22] Decomposing surface mesh
+[09:55:22] - Number of surface mesh entities: Nodes = 1112, Edges = 3472, Faces = 2363
+[09:55:22] - Saving subdomains
+[09:55:22] -- Saving "air_0:brick" as "tmp_sd_2"
+[09:55:22] -- Saving "substrate:solid2" as "tmp_sd_3"
+[09:55:22] Creating volume mesh
+[09:55:22] - Volume meshing subdomain 1 of 2, Name: 'air_0:brick'
+[09:55:22] - Volume meshing subdomain 2 of 2, Name: 'substrate:solid2'
+[09:55:22] Assembling volume mesh
+[09:55:22] - Reading binary8 output of volume mesher
+[09:55:22] - Reading binary8 output of volume mesher
+[09:55:22] - Number of elements for tmp_sd_2:4349
+[09:55:22] - Number of elements for tmp_sd_3:2237
+[09:55:22] - Volume mesh stats: Nb nodes = 1533, Nb edges = 8982, Nb faces = 14036, Nb tets = 6586
+[09:55:22] - Min/Max edge length after volume mesh assembly: min = 0.05, max = 4.24569
+[09:55:22] Writing 3dTet file
+[09:55:23] Writing Bc file
+[09:55:23] Writing ObjectId file
+[09:55:23] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:55:41] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:55:41] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:55:41] Adaptive mesh refinement (pos.snap.)
+[09:55:41] - Reading SAT file
+[09:55:41] Problem class: High Frequency
+[09:55:41] - Refining mesh
+[09:55:43] - OK
+[09:55:43] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:55:47] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:55:47] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:55:47] Adaptive mesh refinement (pos.snap.)
+[09:55:47] - Reading SAT file
+[09:55:47] Problem class: High Frequency
+[09:55:47] - Refining mesh
+[09:55:49] - OK
+[09:55:49] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:55:53] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:55:53] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:55:53] Adaptive mesh refinement (pos.snap.)
+[09:55:53] - Reading SAT file
+[09:55:53] Problem class: High Frequency
+[09:55:53] - Refining mesh
+[09:55:55] - OK
+[09:55:55] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:55:59] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:55:59] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:55:59] Adaptive mesh refinement (pos.snap.)
+[09:55:59] - Reading SAT file
+[09:55:59] Problem class: High Frequency
+[09:55:59] - Refining mesh
+[09:56:02] - OK
+[09:56:02] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:56:07] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:56:07] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:56:07] Adaptive mesh refinement (pos.snap.)
+[09:56:07] - Reading SAT file
+[09:56:07] Problem class: High Frequency
+[09:56:07] - Refining mesh
+[09:56:10] - OK
+[09:56:10] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:56:16] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:56:16] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:56:16] Adaptive mesh refinement (pos.snap.)
+[09:56:16] - Reading SAT file
+[09:56:16] Problem class: High Frequency
+[09:56:16] - Refining mesh
+[09:56:19] - OK
+[09:56:19] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:56:26] Build: 64bit; Number: 20090616; ID: 2009.7 Release from 2009-06-16 (change 101271); Date: 2009-06-16
+[09:56:26] Basename: C:\Work\_LOCAL\CST\circular_resonator\resonator\Result\
+[09:56:26] Adaptive mesh refinement (pos.snap.)
+[09:56:26] - Reading SAT file
+[09:56:26] Problem class: High Frequency
+[09:56:26] - Refining mesh
+[09:56:30] - OK
+[09:56:30] Done
+=== END SESSION ============================================================

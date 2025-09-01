@@ -1,0 +1,267 @@
+%% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
+%% ---------------------------------
+%% This template should be used for the following class files: copernicus.cls, copernicus2.cls, copernicus_discussions.cls
+%% The class files, the Copernicus LaTeX Manual with detailed explanations regarding the comments
+%% and some style files are bundled in the Copernicus Latex Package which can be downloaded from the different journal webpages.
+%% For further assistance please contact the Publication Production Office (production@copernicus.org).
+%% http://publications.copernicus.org
+
+
+%% Differing comments regarding the specific class files are highlighted.
+
+
+%% copernicus.cls
+\documentclass[ars]{copernicus}
+
+%% copernicus2.cls
+%% \documentclass[journal abbreviation]{copernicus2}
+
+%% copernicus_discussions.cls
+%% \documentclass[journal abbreviation, hvmath, online]{copernicus_discussions}
+
+
+\begin{document}
+
+
+\title{Efficient Parametric Finite Element Analysis of Passive Microwave Devices Using a Domain Decomposition - Model Order Reduction Approach}
+
+
+\author[1]{O. Farle}
+\author[2]{S. Selleri}
+\author[1]{M. L\"osch}
+\author[3]{G. Guarnieri}
+\author[1]{R. Dyczij-Edlinger}
+\author[2]{G. Pelosi}
+
+\affil[1]{Lehrstuhl f\"ur Theoretische Elektrotechnik, Universit\"at des
+Saarlandes D-66041 Saarbr\"ucken, Germany}
+\affil[2]{Department of Electronics and Telecommunications,
+University of Florence, Via C. Lombroso 6/17 - 50134 - Florence, Italy}
+\affil[3]{Galileo Avionica S.p.A. - BU Radar Systems Antennas,
+via A. Einstein, 35 - 50013 - Campi Bisenzio (FI) Italy}
+
+%% The [] brackets identify the author to the corresponding affiliation, 1, 2, 3, etc. should be inserted.
+
+
+
+\runningtitle{Efficient Parametric FE Analysis of Passive Microwave Devices Using a DD - MOR Approach}
+
+\runningauthor{O. Farle et al.}
+
+\correspondence{M. L\"osch\\ (m.loesch@lte.uni-saarland.de)}
+
+
+
+\received{}
+\pubdiscuss{} %% only important for two-stage journals
+\revised{}
+\accepted{}
+\published{}
+
+%% These dates will be inserted by the Publication Production Office during the typesetting process.
+
+
+\firstpage{1}
+
+\maketitle
+
+
+
+\begin{abstract}
+In this paper we present a new methodology for efficient parametric finite element analysis.
+Since broadband parameter variations demand for increased numerical robustness,
+we propose the use of a multipoint order reduction method.
+These come along with high computational costs for constructing the projection space.
+Since most of the considered parameters are local,
+this means only a small part of the field domain changes,
+the generation process of the reduced order model can be accelerated by incorporating a domain decomposition approach.
+We present several examples that demonstrate the efficacy of the proposed technique.
+\end{abstract}
+
+\introduction
+The finite element (FE) method is very well known for its flexibility and reliability
+as well as its relatively high computational times.
+%This is a problem when frequency sweeps and material parameter sweeps have to be accounted for
+%and, indeed, several techniques have been proposed to get faster sweeps in frequency \cite{Bracken98} %\cite{Pol97}
+%and,
+%in material parameters \cite{Far06,FarIP}.
+This can become a major issue,
+if the solution is sought as a function of a multidimensional parameter space.
+Possible applications are optimization scenarios or parametric studies.
+Typical parameters include frequency \cite{Bracken98},
+material properties \cite{Far06} and geometry parameters \cite{Daniel2004}.
+A promising candidate for efficiently handling these parameter dependent systems is model order reduction (MOR) \cite{Antoulas2005}.
+Almost all of the modern MOR approaches are projection based.
+This means,
+the original system,
+with up to millions of degrees of freedoms,
+is projected onto a low dimensional subspace of global shape functions,
+thus drastically reducing the dimension of the model with introducing only a minor additional approximation error.
+The number of global shape functions is typically between ten and a few hundred.
+The various order reduction methods mainly differ in the projection spaces
+and the way the projection matrices are computed numerically.
+MOR algorithms can either be characterized as a single point or a multipoint method.
+Most single point methods \cite{Gunupudi2002,Daniel2004} are of moment matching type.
+This means,
+the resulting reduced order model (ROM) matches the derivatives of the transfer function of the full model
+at a given expansion point up to a certain order.
+Since ROM and original model share the same parameterized structure,
+the ROM is a multidimensional Padé approximation \cite{Weile1999}.
+The key feature of single point methods is the fact,
+that the system matrix of the full model only has to be factorized in the expansion point,
+so one matrix factorization is sufficient.
+This advantage looses importance as soon as iterative solvers have to be used.
+Although in recent time,
+progress has been made in improving the numerical stability of single point methods for the multi parameter case
+\cite{Codecasa2005,Feng2005,FarIP},
+multipoint methods like \cite{Weile2001,PrudHomme02} are still numerically more robust.
+Additionally they usually result in ROMs of smaller dimension,
+as demonstrated in \cite{Schultschik2008} for the single parameter case.
+The main drawback of multipoint approaches
+is the need for solving the full FE system at several points in the parameter space.
+This is especially true for the method of proper orthogonal decomposition (POD) \cite{Holmes96},
+where the projection basis is subsequently reduced by a low rank approximation,
+to achieve a further decrease in ROM dimension.
+
+
+\section{HEADING}
+TEXT
+
+\subsection{HEADING}
+TEXT
+
+\subsubsection{HEADING}
+TEXT
+
+
+
+
+\conclusions
+%% \conclusions[modified heading if necessary]
+TEXT
+
+
+
+
+%\appendix
+%\section{\\ \\ \hspace*{-7mm} HEADING}    %% Appendix A
+%
+%\subsection                               %% Appendix A1, A2, etc.
+
+
+
+
+\begin{acknowledgements}
+TEXT
+\end{acknowledgements}
+
+
+\bibliographystyle{copernicus}
+\bibliography{IEEEabrv,Kleinheubach_v0.0}
+%\begin{thebibliography}{}
+%
+%\bibitem[AUTHOR(YEAR)]{LABEL}
+%REFERENCE 1
+%
+%\bibitem[AUTHOR(YEAR)]{LABEL}
+%REFERENCE 2
+%
+%...
+%
+%\end{thebibliography}
+
+
+%% Literature citations
+%% command                        & example result
+%% \citet{jones90}|               & Jones et al.\ (1990)
+%% \citep{jones90}|               & (Jones et al., 1990)
+%% \citep{jones90,jones93}|       & (Jones et al., 1990, 1993)
+%% \citep[p.~32]{jones90}|        & (Jones et al., 1990, p.~32)
+%% \citep[e.g.,][]{jones90}|      & (e.g., Jones et al., 1990)
+%% \citep[e.g.,][p.~32]{jones90}| & (e.g., Jones et al., 1990, p.~32)
+%% \citeauthor{jones90}|          & Jones et al.
+%% \citeyear{jones90}|            & 1990
+
+
+
+
+
+
+%%% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%% ONE-COLUMN FIGURES
+%
+%%f
+%\begin{figure}[t]
+%\vspace*{2mm}
+%\begin{center}
+%\includegraphics[width=8.3cm]{FILE NAME}
+%\end{center}
+%\caption{TEXT}
+%\end{figure}
+%
+%
+%
+%%% TWO-COLUMN FIGURES
+%
+%%f
+%\begin{figure*}[t]
+%\vspace*{2mm}
+%\begin{center}
+%\includegraphics[width=12cm]{FILE NAME}
+%\end{center}
+%\caption{TEXT}
+%\end{figure*}
+%
+%
+%%% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%% ONE-COLUMN TABLE
+%
+%%t
+%\begin{table}[t]
+%\caption{TEXT}
+%\vskip4mm
+%\centering
+%\begin{tabular}{column = lcr}
+%\tophline
+%
+%\middlehline
+%
+%\bottomhline
+%\end{tabular}
+%\end{table}
+%
+%
+%%% TWO-COLUMN TABLE
+%
+%%t
+%\begin{table*}[t]
+%\caption{TEXT}
+%\vskip4mm
+%\centering
+%\begin{tabular}{column = lcr}
+%\tophline
+%
+%\middlehline
+%
+%\bottomhline
+%\end{tabular}
+%\end{table*}
+%
+%
+%%% The different columns must be seperated with a & command and should
+%%% end with \\ to identify the column brake.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%% If figures and tables must be numbered 1a, 1b, etc. the following command
+%%% should be inserted before the begin{} command.
+%
+%\addtocounter{figure}{-1}\renewcommand{\thefigure}{\arabic{figure}a}
+
+
+\end{document}

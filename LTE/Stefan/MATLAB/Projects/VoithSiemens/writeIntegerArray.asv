@@ -1,0 +1,7 @@
+writeIntegerArray(fId, intArray)
+
+
+% begin block
+printf(fId, '{ AI ');
+for intCnt = 1 : length(intArray)
+  printf(fId, '%i ', i);

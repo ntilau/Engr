@@ -1,0 +1,14 @@
+
+filename = 'C:\work\examples\CST\rj45_all_face_ports\CallWaveSolver.bat';
+fid = fopen(filename, 'wt');
+
+numPnts = 6;
+fStart = 1e5;
+fStop = 1e6;
+stepSize = (fStop - fStart) / (numPnts - 1);
+
+for pnt = fStart : stepSize : fStop
+  fprintf(fid, 'EM_WaveSolver 3d %d +direct -dx -sol -out t_v1\n', pnt);
+end
+
+status = fclose(fid);

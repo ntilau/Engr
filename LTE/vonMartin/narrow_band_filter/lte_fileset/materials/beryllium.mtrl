@@ -1,0 +1,8 @@
+{ FILE beryllium.mtrl
+  { MATERIAL_PROPERTY beryllium
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 1 }
+    MU_RELATIVE Scal_Real { AR 1 1.00000079 }
+    SIGMA Scal_Real { AR 1 25000000 }
+  }
+}

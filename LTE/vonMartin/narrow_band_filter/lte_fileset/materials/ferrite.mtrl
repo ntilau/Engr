@@ -1,0 +1,8 @@
+{ FILE ferrite.mtrl
+  { MATERIAL_PROPERTY ferrite
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 12 }
+    MU_RELATIVE Scal_Real { AR 1 1000 }
+    SIGMA Scal_Real { AR 1 0.01 }
+  }
+}

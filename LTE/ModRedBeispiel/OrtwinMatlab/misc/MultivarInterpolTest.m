@@ -1,0 +1,122 @@
+close all;
+clear all;
+set(0,'DefaultFigureWindowStyle','docked');
+
+%% Generate data to be interpolated
+% construct matrix with the ordering of the coefficients
+permutMat=[];   % first column describes frequency dependence
+maxOrder = 2;   % maximum order of parameter dependence
+numParams = 2;
+for k=0:maxOrder
+  permutMat = rec(numParams, k, permutMat, 0, 1);
+end
+
+coeff = 1:size(permutMat,1);
+x{1} = -2:0.1:2;
+x{2} = -1:0.1:1;
+vals = zeros(length(x{1}), length(x{2}));
+for xCnt = 1:length(x{1})
+  for yCnt = 1:length(x{2})
+    xAct = [x{1}(xCnt) x{2}(yCnt)];
+    val = 0;
+    for rowCnt = 1:size(permutMat,1)
+      pow = 1;
+      for parCnt = 1:size(permutMat,2)
+        pow = pow * xAct(parCnt)^permutMat(rowCnt,parCnt);
+      end
+      val = val + coeff(rowCnt)*pow ;
+    end
+    vals(xCnt,yCnt) = val;
+  end
+end
+
+figure;
+surf(x{2}, x{1}, vals)
+
+%% Interpolation
+xIntPnts{1} = -2:2:2;
+xIntPnts{2} = -1:1:1;
+
+% build Vandermonde matrices
+for dimCnt = 1:length(xIntPnts)
+  V = zeros(length(xIntPnts{dimCnt}));
+  for k = 1:length(xIntPnts{dimCnt})
+    for m = 1:length(xIntPnts{dimCnt})
+      V(k, m) = xIntPnts{dimCnt}(k)^(m - 1);
+    end
+  end
+  Vinv{dimCnt} = inv(V);
+end
+
+% build one dimensional Lagrange polynomials
+for dimCnt = 1:length(xIntPnts)
+  for pntCnt = 1:length(xIntPnts{dimCnt})
+    c = zeros(length(xIntPnts{dimCnt}), 1);
+    c(pntCnt) = 1;
+    lagrPoly{dimCnt, pntCnt} = Vinv{dimCnt} * c;
+  end
+end
+
+finalPoly = [];
+maxOrder = length(xIntPnts{1}) + length(xIntPnts{2});
+numParams = 2;
+for k = 0:maxOrder
+  finalPoly = rec(numParams, k, finalPoly, 0, 1);
+end
+coeffPoly = zeros(size(finalPoly, 1), 1);
+
+for x1Cnt = 1:length(xIntPnts{1})
+  for x2Cnt = 1:length(xIntPnts{2})
+    posX1 = find(x{1} == xIntPnts{1}(x1Cnt));
+    posX2 = find(x{2} == xIntPnts{2}(x2Cnt));
+    interpVals(x1Cnt, x2Cnt) = vals(posX1, posX2);
+    % lagrange polynom along parameter 1
+    poly{1} = lagrPoly{1, x1Cnt};
+%     for powCnt = 1:length(poly1)
+%       row = zeros(1, length(xIntPnts));
+%       row(1) = powCnt - 1; 
+%       rowPos = findRowInMat(row, permutMat);
+%       coeffPoly(rowPos) = coeffPoly(rowPos) + ...
+%         interpVals(x1Cnt, x2Cnt) * poly1(powCnt);
+%     end
+    % lagrange polynom along parameter 2
+    poly{2} = lagrPoly{2, x2Cnt};
+%     for powCnt = 1:length(poly2)
+%       row = zeros(1, length(xIntPnts));
+%       row(2) = powCnt - 1; 
+%       rowPos = findRowInMat(row, permutMat);
+%       coeffPoly(rowPos) = coeffPoly(rowPos) + ...
+%         interpVals(x1Cnt, x2Cnt) * poly2(powCnt);
+%     end
+    for pow1Cnt = 1:length(poly{1})
+      for pow2Cnt = 1:length(poly{2})
+        row = [(pow1Cnt - 1) (pow2Cnt - 1)];
+        rowPos = findRowInMat(row, finalPoly);
+        coeffPoly(rowPos) = coeffPoly(rowPos) + ...
+          interpVals(x1Cnt, x2Cnt) * poly{1}(pow1Cnt) * ...
+          poly{2}(pow2Cnt);        
+      end
+    end
+  end
+end
+
+%% plot polynomial
+valIntp = zeros(length(x{1}), length(x{2}));
+for xCnt = 1:length(x{1})
+  for yCnt = 1:length(x{2})
+    xAct = [x{1}(xCnt) x{2}(yCnt)];
+    val = 0;
+    for rowCnt = 1:size(finalPoly, 1)
+      pow = 1;
+      for parCnt = 1:size(finalPoly, 2)
+        pow = pow * xAct(parCnt)^finalPoly(rowCnt, parCnt);
+      end
+      val = val + coeffPoly(rowCnt) * pow ;
+    end
+    valIntp(xCnt,yCnt) = val;
+  end
+end
+
+figure;
+surf(x{2}, x{1}, valIntp)
+

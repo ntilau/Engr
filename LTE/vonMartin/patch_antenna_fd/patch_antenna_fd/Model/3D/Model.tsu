@@ -1,0 +1,34 @@
+1
+2
+30
+5
+2
+TYPE_0D
+S11_f=2.977
+
+RESULTS_EQUAL
+0.06
+2
+TYPE_0D
+Z_MWS (port 1 mode 1)
+
+RESULTS_EQUAL
+1
+2
+TYPE_0D
+directivity 3d
+
+RESULTS_EQUAL
+0.2
+2
+TYPE_0D
+Radiation Efficiency
+
+RESULTS_EQUAL
+0.04
+2
+TYPE_0D
+Total Efficiency
+
+RESULTS_EQUAL
+0.04

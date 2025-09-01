@@ -1,0 +1,25 @@
+function polesAngle = calcPolesAngle(pathName, k0, angleDeg)
+
+fNameSys0 = strcat(pathName, 'sysMatReduced0');
+sys0 = readMatFull(fNameSys0);
+fNameSys1 = strcat(pathName, 'sysMatReduced1');
+sys1 = readMatFull(fNameSys1);
+fNameSys2 = strcat(pathName, 'sysMatReduced2');
+sys2 = readMatFull(fNameSys2);
+fNameIdent = strcat(pathName, 'identRed');
+ident = readMatFull(fNameIdent);
+
+angleRad = angleDeg*pi/180;
+c0 = 299792.458e3;
+mu0_ = 4e-7*pi;
+eta0 = mu0_*c0;
+
+tanAngle = angleRad
+tanAngle = 0.58/639557;
+
+% solve polynomial eigenvalue problem: (A0 + k*A1 + k^2*A2)*x = 0
+A0 = sys0+k0^2*(tan(angleRad)*sys1+sys2);
+A1 = j*eta0*ident;
+A2 = -1*(tanAngle*sys1+sys2);
+k = polyeig(A0,A1,A2);
+polesAngle = c0/(2*pi)*k;

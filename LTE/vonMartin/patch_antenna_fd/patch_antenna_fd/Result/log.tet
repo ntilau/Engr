@@ -1,0 +1,239 @@
+=== BEGIN SESSION ==========================================================
+[09:27:30] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:27:30] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:27:31] Problem class: High Frequency
+[09:27:31] Creating ModelDatabase
+[09:27:31] - Model stats: VERTICES = 65, EDGES = 126, FACES = 78, CELLS = 16
+[09:27:31] - Mesh sizes: global = 3.84085, min = 1.53438, max = 3.84085
+[09:27:31] - OK
+[09:27:31] Surface meshing
+[09:27:31] - Preparing surface mesh
+[09:27:31] - Storing model cells
+[09:27:31] - OK
+[09:27:31] -- Reading additional model attributes
+[09:27:31] -- OK
+[09:27:31] -- Building object info
+[09:27:31] -- OK
+[09:27:31] -- Setting mesh densities
+[09:27:31] Creating surface mesh
+[09:27:32] - Surface mesh stats: Nb nodes = 2394, Nb edges = 7563, Nb faces = 5186
+[09:27:32] - Min/Max edge length after surface meshing: min = 0.0649565, max = 2.52628
+[09:27:32] Temporary directory: "c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Temp\1-temp.tet"
+[09:27:32] Decomposing surface mesh
+[09:27:32] - Number of surface mesh entities: Nodes = 2394, Edges = 7563, Faces = 5186
+[09:27:32] - Saving subdomains
+[09:27:32] -- Saving "Substrate:Substrate" as "tmp_sd_1"
+[09:27:32] -- Saving "Substrate:inner_feed" as "tmp_sd_3"
+[09:27:32] -- Saving "air_0:brick" as "tmp_sd_4"
+[09:27:32] -- Saving "[1,0]air_0:brick" as "tmp_sd_5"
+[09:27:32] -- Saving "[2,0]air_0:brick" as "tmp_sd_6"
+[09:27:32] -- Saving "[3,0]air_0:brick" as "tmp_sd_7"
+[09:27:32] -- Saving "[4,0]air_0:brick" as "tmp_sd_8"
+[09:27:32] -- Saving "[5,0]air_0:brick" as "tmp_sd_9"
+[09:27:32] -- Saving "[6,0]air_0:brick" as "tmp_sd_10"
+[09:27:32] -- Saving "[7,0]air_0:brick" as "tmp_sd_11"
+[09:27:32] -- Saving "[8,0]air_0:brick" as "tmp_sd_12"
+[09:27:32] -- Saving "[9,0]air_0:brick" as "tmp_sd_13"
+[09:27:32] -- Saving "[10,0]air_0:brick" as "tmp_sd_14"
+[09:27:32] -- Saving "[11,0]air_0:brick" as "tmp_sd_15"
+[09:27:32] Creating volume mesh
+[09:27:32] - Volume meshing subdomain 1 of 14, Name: 'Substrate:Substrate'
+[09:27:32] - Volume meshing subdomain 2 of 14, Name: 'Substrate:inner_feed'
+[09:27:32] - Volume meshing subdomain 3 of 14, Name: 'air_0:brick'
+[09:27:33] - Volume meshing subdomain 4 of 14, Name: '[1,0]air_0:brick'
+[09:27:33] - Volume meshing subdomain 5 of 14, Name: '[2,0]air_0:brick'
+[09:27:33] - Volume meshing subdomain 6 of 14, Name: '[3,0]air_0:brick'
+[09:27:33] - Volume meshing subdomain 7 of 14, Name: '[4,0]air_0:brick'
+[09:27:33] - Volume meshing subdomain 8 of 14, Name: '[5,0]air_0:brick'
+[09:27:33] - Volume meshing subdomain 9 of 14, Name: '[6,0]air_0:brick'
+[09:27:34] - Volume meshing subdomain 10 of 14, Name: '[7,0]air_0:brick'
+[09:27:34] - Volume meshing subdomain 11 of 14, Name: '[8,0]air_0:brick'
+[09:27:34] - Volume meshing subdomain 12 of 14, Name: '[9,0]air_0:brick'
+[09:27:34] - Volume meshing subdomain 13 of 14, Name: '[10,0]air_0:brick'
+[09:27:34] - Volume meshing subdomain 14 of 14, Name: '[11,0]air_0:brick'
+[09:27:34] Assembling volume mesh
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Reading binary8 output of volume mesher
+[09:27:34] - Number of elements for tmp_sd_1:236
+[09:27:34] - Number of elements for tmp_sd_3:293
+[09:27:34] - Number of elements for tmp_sd_4:10464
+[09:27:34] - Number of elements for tmp_sd_5:1866
+[09:27:34] - Number of elements for tmp_sd_6:1884
+[09:27:34] - Number of elements for tmp_sd_7:3297
+[09:27:34] - Number of elements for tmp_sd_8:3813
+[09:27:34] - Number of elements for tmp_sd_9:1551
+[09:27:34] - Number of elements for tmp_sd_10:831
+[09:27:34] - Number of elements for tmp_sd_11:823
+[09:27:34] - Number of elements for tmp_sd_12:695
+[09:27:34] - Number of elements for tmp_sd_13:718
+[09:27:34] - Number of elements for tmp_sd_14:363
+[09:27:34] - Number of elements for tmp_sd_15:382
+[09:27:34] - Volume mesh stats: Nb nodes = 5371, Nb edges = 34266, Nb faces = 56114, Nb tets = 27216
+[09:27:34] - Min/Max edge length after volume mesh assembly: min = 0.0988139, max = 2.95925
+[09:27:34] Writing 3dTet file
+[09:27:35] Writing Bc file
+[09:27:35] Writing ObjectId file
+[09:27:35] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:27:40] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:27:40] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:27:40] Adaptive mesh refinement (pos.snap.)
+[09:27:40] - Reading SAT file
+[09:27:40] Problem class: High Frequency
+[09:27:40] - Refining mesh
+[09:27:42] - OK
+[09:27:42] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:27:42] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:27:42] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:27:42] Adaptive mesh refinement (pos.snap.)
+[09:27:42] - Reading SAT file
+[09:27:42] Problem class: High Frequency
+[09:27:42] - Refining mesh
+[09:27:45] - OK
+[09:27:45] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:27:48] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:27:48] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:27:48] Adaptive mesh refinement (pos.snap.)
+[09:27:48] - Reading SAT file
+[09:27:48] Problem class: High Frequency
+[09:27:48] - Refining mesh
+[09:27:50] - OK
+[09:27:50] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:27:51] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:27:51] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:27:51] Adaptive mesh refinement (pos.snap.)
+[09:27:51] - Reading SAT file
+[09:27:51] Problem class: High Frequency
+[09:27:51] - Refining mesh
+[09:27:56] - OK
+[09:27:56] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:28:51] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:28:51] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:28:51] Adaptive mesh refinement (pos.snap.)
+[09:28:51] - Reading SAT file
+[09:28:51] Problem class: High Frequency
+[09:28:51] - Refining mesh
+[09:28:58] - OK
+[09:28:58] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:29:46] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:29:46] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:29:46] Adaptive mesh refinement (pos.snap.)
+[09:29:46] - Reading SAT file
+[09:29:46] Problem class: High Frequency
+[09:29:46] - Refining mesh
+[09:29:53] - OK
+[09:29:53] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:30:41] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:30:41] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:30:41] Adaptive mesh refinement (pos.snap.)
+[09:30:41] - Reading SAT file
+[09:30:41] Problem class: High Frequency
+[09:30:41] - Refining mesh
+[09:30:49] - OK
+[09:30:49] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:31:40] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:31:40] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:31:40] Adaptive mesh refinement (pos.snap.)
+[09:31:40] - Reading SAT file
+[09:31:40] Problem class: High Frequency
+[09:31:40] - Refining mesh
+[09:31:48] - OK
+[09:31:48] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:32:45] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:32:45] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:32:45] Adaptive mesh refinement (pos.snap.)
+[09:32:45] - Reading SAT file
+[09:32:45] Problem class: High Frequency
+[09:32:45] - Refining mesh
+[09:32:54] - OK
+[09:32:54] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:33:55] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:33:55] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:33:55] Adaptive mesh refinement (pos.snap.)
+[09:33:55] - Reading SAT file
+[09:33:55] Problem class: High Frequency
+[09:33:55] - Refining mesh
+[09:34:06] - OK
+[09:34:06] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:35:12] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:35:12] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:35:12] Adaptive mesh refinement (pos.snap.)
+[09:35:12] - Reading SAT file
+[09:35:12] Problem class: High Frequency
+[09:35:12] - Refining mesh
+[09:35:25] - OK
+[09:35:25] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:36:39] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:36:39] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:36:39] Adaptive mesh refinement (pos.snap.)
+[09:36:39] - Reading SAT file
+[09:36:39] Problem class: High Frequency
+[09:36:39] - Refining mesh
+[09:36:55] - OK
+[09:36:55] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:38:21] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:38:21] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:38:21] Adaptive mesh refinement (pos.snap.)
+[09:38:21] - Reading SAT file
+[09:38:21] Problem class: High Frequency
+[09:38:21] - Refining mesh
+[09:38:38] - OK
+[09:38:38] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:40:20] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:40:20] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:40:20] Adaptive mesh refinement (pos.snap.)
+[09:40:20] - Reading SAT file
+[09:40:20] Problem class: High Frequency
+[09:40:20] - Refining mesh
+[09:40:39] - OK
+[09:40:39] Done
+=== END SESSION ============================================================
+=== BEGIN SESSION ==========================================================
+[09:42:27] Build: 64bit; Number: 20090428; ID: 2009.6 Release from 2009-04-28 (change 97074); Date: 2009-04-28
+[09:42:27] Basename: c:\work\_local\cst\patch_antenna_fd\patch antenna fd\Result\
+[09:42:27] Adaptive mesh refinement (pos.snap.)
+[09:42:27] - Reading SAT file
+[09:42:27] Problem class: High Frequency
+[09:42:27] - Refining mesh
+[09:42:48] - OK
+[09:42:48] Done
+=== END SESSION ============================================================

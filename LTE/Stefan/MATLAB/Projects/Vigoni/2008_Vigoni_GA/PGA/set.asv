@@ -1,0 +1,34 @@
+function p = set(p,varargin)
+% SETS various parameters
+
+propertyArgIn = varargin;
+
+invalidate = 0;
+
+while length(propertyArgIn) >= 2,
+    prop = propertyArgIn{1};
+    val = propertyArgIn{2};
+    propertyArgIn = propertyArgIn(3:end);
+
+    switch prop
+        case 'Specimens'
+            p.population.Nind = floor(val);
+        case 'Generations'
+            p.population.Ngen = floor(val);
+        % Gestione dell'array di puntatori a funz    
+        case 'Cost'
+            for i = 1:length(val)
+                p.cost{i} = val{i};
+            end
+        case 'Phenotype'
+            for i = 1:length(val)
+                p.phenotype{i}.min = val{i}(1);
+                p.phenotype{i}.max = val{i}(2);
+                p.phenotype{i}.N = floor(val{i}(3));
+            end
+        otherwise
+            error('PGA properties: Specimens, Cost, Phenotype')
+    end
+end
+
+    

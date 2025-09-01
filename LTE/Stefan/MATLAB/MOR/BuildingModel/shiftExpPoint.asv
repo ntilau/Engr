@@ -1,0 +1,33 @@
+function ModelShifted = shiftExpPoint(polyCell, permutMat, shift)
+
+sysMat = cell(size(Model.permutMat,1),1);
+rhs = cell(size(Model.permutMat,1),1);
+for iRow = 1:size(Model.permutMat,1)
+  [v mPowers] = getShiftedMultivariatePolynom(Model.permutMat(iRow,:), shift);
+  if ~isempty(Model.sysMat{iRow})
+    sysMat = add2PolyCell(sysMat, permutMat, v, mPowers, Model.sysMat{iRow});
+  end
+  if ~isempty(Model.rhs{iRow})
+    rhs = add2PolyCell(rhs, permutMat, v, mPowers, Model.rhs{iRow});
+  end
+end
+ModelShifted.sysMat = sysMat;
+ModelShifted.rhs = rhs;
+
+
+
+
+
+function polyCell = add2PolyCell(polyCell, permutMat, v, mPowers, A)
+
+for iCoeff = 1:length(v)
+  rowNum = findRowInMat(mPowers(iCoeff,:), permutMat);
+  if isempty(polyCell{rowNum})
+    polyCell{rowNum} = v(iCoeff)*A;
+  else
+    polyCell{rowNum} = polyCell{rowNum} + v(iCoeff)*A;
+  end
+end
+
+
+

@@ -1,0 +1,17 @@
+function y = applyMultOp(A, Fact, b, p)
+% A is a matrix
+% If pardiso == false: Fact is a factorization structure of matrix X with 
+% Fact.P * X * Fact.Q = Fact.L * Fact.U
+% b is a vector
+% y = Fact^{-1}*A*b
+
+y = A*b;
+if ~isempty(Fact)
+  if ~isempty(Fact.P)
+    y = Fact.P*y;
+  end
+  y = Fact.U\(Fact.L\y);
+  if ~isempty(Fact.Q)
+    y = Fact.Q*y;
+  end
+end

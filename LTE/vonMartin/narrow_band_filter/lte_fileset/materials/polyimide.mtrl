@@ -1,0 +1,8 @@
+{ FILE polyimide.mtrl
+  { MATERIAL_PROPERTY polyimide
+    3
+    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3.5,-0.028) } 
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

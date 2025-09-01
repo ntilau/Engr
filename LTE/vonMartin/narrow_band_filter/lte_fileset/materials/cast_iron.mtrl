@@ -1,0 +1,8 @@
+{ FILE cast_iron.mtrl
+  { MATERIAL_PROPERTY cast_iron
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 1 }
+    MU_RELATIVE Scal_Real { AR 1 60 }
+    SIGMA Scal_Real { AR 1 1500000 }
+  }
+}

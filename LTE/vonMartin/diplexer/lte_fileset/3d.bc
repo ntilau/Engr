@@ -1,0 +1,306 @@
+Face Face_PEC_100
+	PerfectE
+
+Face Face_PEC_101
+	PerfectE
+
+Face Face_PEC_104
+	PerfectE
+
+Face Face_PEC_105
+	PerfectE
+
+Face Face_PEC_106
+	PerfectE
+
+Face Face_PEC_107
+	PerfectE
+
+Face Face_PEC_11
+	PerfectE
+
+Face Face_PEC_110
+	PerfectE
+
+Face Face_PEC_111
+	PerfectE
+
+Face Face_PEC_112
+	PerfectE
+
+Face Face_PEC_113
+	PerfectE
+
+Face Face_PEC_116
+	PerfectE
+
+Face Face_PEC_117
+	PerfectE
+
+Face Face_PEC_118
+	PerfectE
+
+Face Face_PEC_119
+	PerfectE
+
+Face Face_PEC_12
+	PerfectE
+
+Face Face_PEC_122
+	PerfectE
+
+Face Face_PEC_123
+	PerfectE
+
+Face Face_PEC_124
+	PerfectE
+
+Face Face_PEC_125
+	PerfectE
+
+Face Face_PEC_128
+	PerfectE
+
+Face Face_PEC_129
+	PerfectE
+
+Face Face_PEC_13
+	PerfectE
+
+Face Face_PEC_130
+	PerfectE
+
+Face Face_PEC_131
+	PerfectE
+
+Face Face_PEC_132
+	PerfectE
+
+Face Face_PEC_134
+	PerfectE
+
+Face Face_PEC_135
+	PerfectE
+
+Face Face_PEC_136
+	PerfectE
+
+Face Face_PEC_137
+	PerfectE
+
+Face Face_PEC_139
+	PerfectE
+
+Face Face_PEC_14
+	PerfectE
+
+Face Face_PEC_144
+	PerfectE
+
+Face Face_PEC_145
+	PerfectE
+
+Face Face_PEC_15
+	PerfectE
+
+Face Face_PEC_18
+	PerfectE
+
+Face Face_PEC_19
+	PerfectE
+
+Face Face_PEC_20
+	PerfectE
+
+Face Face_PEC_21
+	PerfectE
+
+Face Face_PEC_24
+	PerfectE
+
+Face Face_PEC_25
+	PerfectE
+
+Face Face_PEC_26
+	PerfectE
+
+Face Face_PEC_27
+	PerfectE
+
+Face Face_PEC_30
+	PerfectE
+
+Face Face_PEC_31
+	PerfectE
+
+Face Face_PEC_32
+	PerfectE
+
+Face Face_PEC_33
+	PerfectE
+
+Face Face_PEC_36
+	PerfectE
+
+Face Face_PEC_37
+	PerfectE
+
+Face Face_PEC_38
+	PerfectE
+
+Face Face_PEC_39
+	PerfectE
+
+Face Face_PEC_4
+	PerfectE
+
+Face Face_PEC_42
+	PerfectE
+
+Face Face_PEC_43
+	PerfectE
+
+Face Face_PEC_44
+	PerfectE
+
+Face Face_PEC_45
+	PerfectE
+
+Face Face_PEC_48
+	PerfectE
+
+Face Face_PEC_49
+	PerfectE
+
+Face Face_PEC_5
+	PerfectE
+
+Face Face_PEC_50
+	PerfectE
+
+Face Face_PEC_51
+	PerfectE
+
+Face Face_PEC_54
+	PerfectE
+
+Face Face_PEC_55
+	PerfectE
+
+Face Face_PEC_56
+	PerfectE
+
+Face Face_PEC_57
+	PerfectE
+
+Face Face_PEC_6
+	PerfectE
+
+Face Face_PEC_60
+	PerfectE
+
+Face Face_PEC_61
+	PerfectE
+
+Face Face_PEC_62
+	PerfectE
+
+Face Face_PEC_63
+	PerfectE
+
+Face Face_PEC_64
+	PerfectE
+
+Face Face_PEC_66
+	PerfectE
+
+Face Face_PEC_67
+	PerfectE
+
+Face Face_PEC_68
+	PerfectE
+
+Face Face_PEC_69
+	PerfectE
+
+Face Face_PEC_7
+	PerfectE
+
+Face Face_PEC_72
+	PerfectE
+
+Face Face_PEC_76
+	PerfectE
+
+Face Face_PEC_78
+	PerfectE
+
+Face Face_PEC_8
+	PerfectE
+
+Face Face_PEC_80
+	PerfectE
+
+Face Face_PEC_81
+	PerfectE
+
+Face Face_PEC_82
+	PerfectE
+
+Face Face_PEC_83
+	PerfectE
+
+Face Face_PEC_86
+	PerfectE
+
+Face Face_PEC_87
+	PerfectE
+
+Face Face_PEC_88
+	PerfectE
+
+Face Face_PEC_89
+	PerfectE
+
+Face Face_PEC_9
+	PerfectE
+
+Face Face_PEC_92
+	PerfectE
+
+Face Face_PEC_93
+	PerfectE
+
+Face Face_PEC_94
+	PerfectE
+
+Face Face_PEC_95
+	PerfectE
+
+Face Face_PEC_98
+	PerfectE
+
+Face Face_PEC_99
+	PerfectE
+
+Face Port_1
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+		RenormImp 0.0e+000	ExcitationPhase (1.0000000000000000e+000,0.0000000000000000e+000)
+
+Face Port_2
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+		RenormImp 0.0e+000	ExcitationPhase (1.0000000000000000e+000,0.0000000000000000e+000)
+
+Face Port_3
+	WavePort
+	NumMode 1
+		Mode1
+		ModeNum 1
+		RenormImp 0.0e+000	ExcitationPhase (1.0000000000000000e+000,0.0000000000000000e+000)
+

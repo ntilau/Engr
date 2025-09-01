@@ -1,0 +1,188 @@
+// Number 3D OBJECTS:
+// ^^^^^^^^^^^^^^^^^^
+13
+
+// Obj3D_ID, MediaCode (0=Iso3D,1=LossyIso3D,2=PEC,3=Aniso3D,4=LossyAniso3D,5=SurfaceImp)
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0 0
+>> Material name:
+Vacuum
+
+1 0
+>> Material name:
+air_0
+
+2 0
+>> Material name:
+air_0
+
+3 0
+>> Material name:
+air_0
+
+4 0
+>> Material name:
+air_0
+
+5 0
+>> Material name:
+air_0
+
+6 0
+>> Material name:
+air_0
+
+7 0
+>> Material name:
+air_0
+
+8 0
+>> Material name:
+air_0
+
+9 0
+>> Material name:
+air_0
+
+10 0
+>> Material name:
+air_0
+
+11 0
+>> Material name:
+air_0
+
+12 0
+>> Material name:
+air_0
+
+// Number 2D OBJECTS:
+// ^^^^^^^^^^^^^^^^^^
+57
+
+// Obj2D_ID, BCCode (0=Reg,1=PEC,2=PMC,3=RHO,4=OHM,5=PORT,6=OPEN,7=EXPANDEDOPEN,8=PERIODIC,9=TANGENTIAL,10=NORMAL):
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0 0
+
+1 2
+
+2 1
+
+3 7
+
+4 7
+
+5 7
+
+6 7
+
+7 7
+
+8 7
+
+9 0
+
+10 0
+
+11 7
+
+12 7
+
+13 0
+
+14 2
+
+15 7
+
+16 7
+
+17 0
+
+18 2
+
+19 7
+
+20 7
+
+21 0
+
+22 1
+
+23 7
+
+24 7
+
+25 0
+
+26 1
+
+27 7
+
+28 7
+
+29 0
+
+30 0
+
+31 2
+
+32 1
+
+33 7
+
+34 2
+
+35 0
+
+36 0
+
+37 1
+
+38 7
+
+39 0
+
+40 0
+
+41 0
+
+42 1
+
+43 7
+
+44 0
+
+45 0
+
+46 0
+
+47 2
+
+48 7
+
+49 2
+
+50 1
+
+51 0
+
+52 0
+
+53 0
+
+54 0
+
+55 1
+
+56 1
+
+// Number 1D OBJECTS:
+// ^^^^^^^^^^^^^^^^^^
+2
+
+// Obj1D_ID, BCCode (0=Reg,1=PEC,2=PMC,3=PORT,4=Lumped):
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0 0
+1 5
+1 + 1 139
+

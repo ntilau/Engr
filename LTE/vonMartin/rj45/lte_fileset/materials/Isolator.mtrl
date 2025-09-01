@@ -1,0 +1,8 @@
+{ FILE Isolator.mtrl
+{ MATERIAL_PROPERTY Isolator
+	3
+	EPSILON_RELATIVE Scal_Real { AR 1 2.4 } 
+	MU_RELATIVE Scal_Real { AR 1 1.0 } 
+	SIGMA Scal_Real { AR 1 0.0 } 
+}
+}

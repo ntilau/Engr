@@ -1,0 +1,90 @@
+function X = compGenKrySpaceNparamPoly(sysMat, fact, startVec, ...
+                                       order, numParam)
+% REVISIT: documentation of input parameters
+
+permutMat=[];
+for k=0:order
+  permutMat = rec(numParam, k, permutMat, 0, 1);
+end
+
+[r c] = size(permutMat);
+
+dims = [];
+for k = 1:length(sysMat)
+  [rDim cDim] = size(sysMat{k});
+  if rDim ~= cDim
+    error('Matrix should be square!');
+  end
+  dims = [dims, rDim];
+end
+dim = max(dims);
+X = zeros(dim, r);            % orthonormal vectors
+
+for k = 2:length(sysMat)
+  if ~isempty(sysMat{k})
+    sysMatXortho{k} = zeros(dim,r);  % components not yet in krylov space
+    sysMatXproj{k} = zeros(r,r);     % projections of SysMat*X on krylov space
+  else
+    sysMatXortho{k} = [];     % components not yet in krylov space
+    sysMatXproj{k} = [];      % projections of SysMat*X on krylov space
+  end
+end
+
+% [i,j] = component of product i in direction of x_j
+F = zeros(r,r);
+
+% initialization
+normStartVec = norm(startVec);
+X(:,1) = startVec/normStartVec;
+F(1,1) = normStartVec;
+for p = 2:length(sysMat)
+  if ~isempty(sysMat{p})
+    AX = applyMultOp(sysMat{p},fact,X(:,1));
+    proj = X(:,1)'*AX;
+    sysMatXproj{p}(1,1) = proj;
+    sysMatXortho{p}(:,1) = AX-proj*X(:,1);
+  end
+end
+
+for n=2:r
+  bBlocks = findBuildingBlocksPoly(permutMat, n, sysMat);
+  newOrthoVec = zeros(dim,1);
+  [rBb cBb] = size(bBlocks);
+  for k=1:cBb
+    % find appropriate sysMatrix to build sum
+    % numSysMat = find((permutMat(n,:)==permutMat(numArr(k),:))==0);
+    for m=1:bBlocks(2,k)
+      F(1:n,n) = F(1:n,n) + F(m, bBlocks(2,k)) * ...
+        sysMatXproj{bBlocks(1,k)}(1:n,m);
+      newOrthoVec = newOrthoVec + F(m, bBlocks(2,k))*...
+        sysMatXortho{bBlocks(1,k)}(1:dim,m);
+    end
+  end
+  F(n,n) = norm(newOrthoVec);
+  X(:,n) = newOrthoVec/norm(newOrthoVec);
+  % build sysMat*X(:,n) and calculate projections on existing krylov
+  % vectors and orthogonalize against them
+  for matCnt = 2:length(sysMat)
+    if ~isempty(sysMat{matCnt})
+      sysMatX = applyMultOp(sysMat{matCnt},fact,X(:,n));
+      % modified Gram Schmidt
+      for k = 1:n
+        proj = X(:,k)'*sysMatX;
+        sysMatXproj{matCnt}(k,n) = proj;
+        sysMatX = sysMatX - proj*X(:,k);
+      end
+      sysMatXortho{matCnt}(:,n) = sysMatX;
+    end
+  end
+  % orthogonalize existing sysMatXortho against new orthonormal
+  % krylov vector
+  for matCnt=2:length(sysMat)
+    if ~isempty(sysMat{matCnt})
+      proj = X(:,n)'*sysMatXortho{matCnt}(:,1:(n-1));
+      sysMatXproj{matCnt}(n,1:(n-1)) = proj;
+      sysMatXortho{matCnt}(:,1:(n-1)) = ...
+        sysMatXortho{matCnt}(:,1:(n-1))-X(:,n)*proj;
+    end
+  end
+end
+

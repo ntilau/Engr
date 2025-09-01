@@ -1,0 +1,8 @@
+{ FILE diamond_hi_pres.mtrl
+  { MATERIAL_PROPERTY diamond_hi_pres
+    3
+    EPSILON_RELATIVE Scal_Real { AR 1 5.7 }
+    MU_RELATIVE Scal_Real { AR 1 1 }
+    SIGMA Scal_Real { AR 1 0 }
+  }
+}

@@ -1,0 +1,8 @@
+{ FILE test.mtrl
+{ MATERIAL_PROPERTY test
+	3
+	EPSILON_RELATIVE Scal_Real { AR 1 12.0 } 
+	MU_RELATIVE Scal_Real { AR 1 1.0 } 
+	SIGMA Scal_Real { AR 1 0 } 
+}
+}
