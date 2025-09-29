@@ -1,9 +1,0 @@
-function x1 = runtimeTest(A, b)
-
-x1 = A \ b;
-[L U] = lu(A);
-x2 = U \ (L \ b);
-
-
-function x2 = forwardBack(L, U, b)
-

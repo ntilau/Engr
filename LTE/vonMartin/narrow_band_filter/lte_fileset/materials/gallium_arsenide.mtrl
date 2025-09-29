@@ -1,8 +1,0 @@
-{ FILE gallium_arsenide.mtrl
-  { MATERIAL_PROPERTY gallium_arsenide
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 12.9 }
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

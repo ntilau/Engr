@@ -1,8 +1,0 @@
-{ FILE Polyflon_Copper_Clad_ULTEM__tm.mtrl
-  { MATERIAL_PROPERTY Polyflon_Copper_Clad_ULTEM__tm
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3.05,-0.0183) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

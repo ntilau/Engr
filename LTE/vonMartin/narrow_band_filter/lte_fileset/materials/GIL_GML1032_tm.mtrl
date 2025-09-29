@@ -1,8 +1,0 @@
-{ FILE GIL_GML1032__tm.mtrl
-  { MATERIAL_PROPERTY GIL_GML1032__tm
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3.2,-0.0096) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

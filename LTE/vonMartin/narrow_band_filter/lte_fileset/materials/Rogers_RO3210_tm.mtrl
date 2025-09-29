@@ -1,8 +1,0 @@
-{ FILE Rogers_RO3210__tm.mtrl
-  { MATERIAL_PROPERTY Rogers_RO3210__tm
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 10.2,-0.0306) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

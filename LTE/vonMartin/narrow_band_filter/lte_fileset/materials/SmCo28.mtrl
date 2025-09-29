@@ -1,8 +1,0 @@
-{ FILE SmCo28.mtrl
-  { MATERIAL_PROPERTY SmCo28
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 1.03838895916414 }
-    SIGMA Scal_Real { AR 1 1111111 }
-  }
-}

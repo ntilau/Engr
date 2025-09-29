@@ -1,8 +1,0 @@
-{ FILE modified_epoxy.mtrl
-  { MATERIAL_PROPERTY modified_epoxy
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 4.2,-0.084) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

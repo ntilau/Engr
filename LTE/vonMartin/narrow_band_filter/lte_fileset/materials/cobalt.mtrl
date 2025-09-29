@@ -1,8 +1,0 @@
-{ FILE cobalt.mtrl
-  { MATERIAL_PROPERTY cobalt
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 250 }
-    SIGMA Scal_Real { AR 1 10000000 }
-  }
-}

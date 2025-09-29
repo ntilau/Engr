@@ -1,8 +1,0 @@
-{ FILE bakelite.mtrl
-  { MATERIAL_PROPERTY bakelite
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 4.8,-0.0096) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 1e-009 }
-  }
-}

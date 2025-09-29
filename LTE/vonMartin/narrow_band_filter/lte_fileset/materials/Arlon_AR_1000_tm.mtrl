@@ -1,8 +1,0 @@
-{ FILE Arlon_AR_1000__tm.mtrl
-  { MATERIAL_PROPERTY Arlon_AR_1000__tm
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 10,-0.035) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

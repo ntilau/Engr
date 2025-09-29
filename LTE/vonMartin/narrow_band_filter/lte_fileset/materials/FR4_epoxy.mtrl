@@ -1,8 +1,0 @@
-{ FILE FR4_epoxy.mtrl
-  { MATERIAL_PROPERTY FR4_epoxy
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 4.4,-0.088) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

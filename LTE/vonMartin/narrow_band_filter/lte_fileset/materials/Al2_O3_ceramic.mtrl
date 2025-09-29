@@ -1,8 +1,0 @@
-{ FILE Al2_O3_ceramic.mtrl
-  { MATERIAL_PROPERTY Al2_O3_ceramic
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 9.8 }
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

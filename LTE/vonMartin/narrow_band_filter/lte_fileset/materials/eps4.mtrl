@@ -1,8 +1,0 @@
-{ FILE eps4.mtrl
-{ MATERIAL_PROPERTY eps4
-	3
-	EPSILON_RELATIVE Scal_Real { AR 1 4.0 } 
-	MU_RELATIVE Scal_Real { AR 1 4.0 } 
-	SIGMA Scal_Real { AR 1 0.0000000 } 
-}
-}

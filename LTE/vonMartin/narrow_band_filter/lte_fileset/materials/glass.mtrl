@@ -1,8 +1,0 @@
-{ FILE glass.mtrl
-  { MATERIAL_PROPERTY glass
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 5.5 }
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

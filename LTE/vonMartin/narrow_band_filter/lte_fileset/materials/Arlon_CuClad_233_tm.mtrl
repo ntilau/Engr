@@ -1,8 +1,0 @@
-{ FILE Arlon_CuClad_233__tm.mtrl
-  { MATERIAL_PROPERTY Arlon_CuClad_233__tm
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 2.33,-0.003029) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

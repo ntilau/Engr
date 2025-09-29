@@ -1,8 +1,0 @@
-{ FILE BT_systems.mtrl
-  { MATERIAL_PROPERTY BT_systems
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 3.9 }
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

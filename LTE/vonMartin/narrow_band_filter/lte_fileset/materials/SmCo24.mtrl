@@ -1,8 +1,0 @@
-{ FILE SmCo24.mtrl
-  { MATERIAL_PROPERTY SmCo24
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 1.06313817927575 }
-    SIGMA Scal_Real { AR 1 1111111 }
-  }
-}

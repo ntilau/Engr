@@ -1,8 +1,0 @@
-{ FILE Dupont_Type_100_HN_Film__tm.mtrl
-  { MATERIAL_PROPERTY Dupont_Type_100_HN_Film__tm
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3.5,-0.0091) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

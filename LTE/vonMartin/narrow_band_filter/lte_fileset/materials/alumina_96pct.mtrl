@@ -1,8 +1,0 @@
-{ FILE alumina_96pct.mtrl
-  { MATERIAL_PROPERTY alumina_96pct
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 9.4,-0.0564) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

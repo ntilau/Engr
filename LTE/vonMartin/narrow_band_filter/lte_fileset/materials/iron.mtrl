@@ -1,8 +1,0 @@
-{ FILE iron.mtrl
-  { MATERIAL_PROPERTY iron
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 4000 }
-    SIGMA Scal_Real { AR 1 10300000 }
-  }
-}

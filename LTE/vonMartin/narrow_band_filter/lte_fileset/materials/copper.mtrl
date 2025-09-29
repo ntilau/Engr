@@ -1,8 +1,0 @@
-{ FILE copper.mtrl
-  { MATERIAL_PROPERTY copper
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 0.999991 }
-    SIGMA Scal_Real { AR 1 58000000 }
-  }
-}

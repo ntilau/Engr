@@ -1,8 +1,0 @@
-{ FILE bulk.mtrl
-{ MATERIAL_PROPERTY bulk
-	3
-	EPSILON_RELATIVE Scal_Complex { AC 1 (11.7,0.0) } 
-	MU_RELATIVE Scal_Real { AR 1 1.0 } 
-	SIGMA Scal_Complex { AC 1 (6.667, 0.0) } 
-}
-}

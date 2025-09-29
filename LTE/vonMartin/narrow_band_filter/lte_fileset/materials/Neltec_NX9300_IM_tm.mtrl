@@ -1,8 +1,0 @@
-{ FILE Neltec_NX9300_IM___tm.mtrl
-  { MATERIAL_PROPERTY Neltec_NX9300_IM___tm
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 3,-0.0069) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

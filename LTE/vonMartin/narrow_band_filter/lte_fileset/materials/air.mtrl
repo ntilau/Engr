@@ -1,8 +1,0 @@
-{ FILE air.mtrl
-  { MATERIAL_PROPERTY air
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1.0006 }
-    MU_RELATIVE Scal_Real { AR 1 1.0000004 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

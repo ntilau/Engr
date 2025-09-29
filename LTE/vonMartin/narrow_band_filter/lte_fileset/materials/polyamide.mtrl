@@ -1,8 +1,0 @@
-{ FILE polyamide.mtrl
-  { MATERIAL_PROPERTY polyamide
-    3
-    EPSILON_RELATIVE Scal_Complex { AC 1 ( 4.3,-0.0172) } 
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 0 }
-  }
-}

@@ -1,8 +1,0 @@
-{ FILE eps38.mtrl
-{ MATERIAL_PROPERTY eps38
-	3
-	EPSILON_RELATIVE Scal_Real { AR 1 38 } 
-	MU_RELATIVE Scal_Real { AR 1 1.0 } 
-	SIGMA Scal_Real { AR 1 0.0 } 
-}
-}

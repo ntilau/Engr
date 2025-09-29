@@ -1,8 +1,0 @@
-{ FILE rubber_hard.mtrl
-  { MATERIAL_PROPERTY rubber_hard
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 3 }
-    MU_RELATIVE Scal_Real { AR 1 1 }
-    SIGMA Scal_Real { AR 1 1e-015 }
-  }
-}

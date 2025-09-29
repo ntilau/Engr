@@ -1,8 +1,0 @@
-{ FILE NdFe30.mtrl
-  { MATERIAL_PROPERTY NdFe30
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 1.0445730167132 }
-    SIGMA Scal_Real { AR 1 625000 }
-  }
-}

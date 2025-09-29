@@ -1,8 +1,0 @@
-{ FILE water_sea.mtrl
-  { MATERIAL_PROPERTY water_sea
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 81 }
-    MU_RELATIVE Scal_Real { AR 1 0.999991 }
-    SIGMA Scal_Real { AR 1 4 }
-  }
-}

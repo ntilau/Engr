@@ -1,8 +1,0 @@
-xy:     node vector of the global mesh of the problem
-ele:    element vector of the global mesh of the problem
-xydd:   node vector of the partition
-eledd:  element vector of the partition
-elabdd: element label
-
-mesh.dd:  contains all data for geometry and subdomains. It is NOT used as a Mesh.
-          It is just used for splitting whole domain in subdomains for DD.

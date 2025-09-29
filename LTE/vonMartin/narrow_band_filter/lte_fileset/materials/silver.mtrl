@@ -1,8 +1,0 @@
-{ FILE silver.mtrl
-  { MATERIAL_PROPERTY silver
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 0.99998 }
-    SIGMA Scal_Real { AR 1 61000000 }
-  }
-}

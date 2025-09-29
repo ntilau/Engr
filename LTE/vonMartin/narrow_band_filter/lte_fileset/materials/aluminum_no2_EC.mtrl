@@ -1,8 +1,0 @@
-{ FILE aluminum_no2_EC.mtrl
-  { MATERIAL_PROPERTY aluminum_no2_EC
-    3
-    EPSILON_RELATIVE Scal_Real { AR 1 1 }
-    MU_RELATIVE Scal_Real { AR 1 1.000021 }
-    SIGMA Scal_Real { AR 1 33000000 }
-  }
-}
